@@ -41,6 +41,14 @@ function newuptown_customize_register( $wp_customize ) {
       'settings' => 'linkedin',
   ) ) );
 
+  // Add Flickr Setting
+  $wp_customize->add_setting( 'flickr' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'flickr', array(
+      'label' => __( 'Flickr', '_s' ),
+      'section' => 'social-media',
+      'settings' => 'flickr',
+  ) ) );
+
   // Add Instagram Setting
   $wp_customize->add_setting( 'instagram' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'instagram', array(
@@ -80,6 +88,37 @@ function newuptown_customize_register( $wp_customize ) {
       'section' => 'social-media',
       'settings' => 'rss',
   ) ) );
+
+  // Add Custom Button Setting
+  $wp_customize->add_setting( 'custom' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom', array(
+      'label' => __( 'Custom Button', '_s' ),
+      'section' => 'social-media',
+      'settings' => 'custom',
+  ) ) );
+  $wp_customize->add_setting( 'custom-text' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom-text', array(
+      'label' => __( 'Custom Button Text', '_s' ),
+      'section' => 'social-media',
+      'settings' => 'custom-text',
+  ) ) );
+
+
+  // Header Options
+  $wp_customize->add_section( 'header-options' , array(
+    'title' => __( 'Header Options', '_s' ),
+    'priority' => 40,
+    'description' => __( 'Choose options for the header.', '_s' )
+  ) );
+  // Sticky Header
+  $wp_customize->add_setting( 'sticky-header' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'sticky-header', array(
+      'label' => __( 'Sticky Header?', '_s' ),
+      'section' => 'header-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to enable the sticky header',
+  ) ) );
+
 
   // Add Copyright Section
   $wp_customize->add_section( 'copyright-text' , array(
