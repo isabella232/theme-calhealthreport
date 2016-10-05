@@ -120,10 +120,37 @@ h2 span.sub-title {
   font-size: 65%;
   margin: 10px 0;
 }
-.off-canvas-content #masthead, .off-canvas-content section.container, .off-canvas-content #footer-container {
-  max-width: 1600px;
+h3.section-heading {
+  font-size: 1.875rem !important;
+  text-transform: uppercase;
+  text-align: center;
+}
+span.section-heading-inner {
+  position: relative;
+  padding-bottom: 40px;
+  display: inline-block;
+  min-width: 107px;
+}
+span.section-heading-inner:after {
+  content: '';
+  width: 107px;
+  height: 19px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/09/after-triangles-optim.png) no-repeat center center;
+  background-size: 107px 19px;
+}
+.off-canvas-content #masthead {
+  max-width: 75rem;
   margin: 0 auto;
   padding: 0 15px;
+}
+.off-canvas-content #footer-container {
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
 }
 .subtle-image-border img,
 img.subtle-image-border {
@@ -175,14 +202,15 @@ body.modal-active {
   color: $white;
 }
 .bs-btn.bs-btn-clear {
-  background: $white;
-  border: 2px solid $black;
+  background: none !important;
+  border: 2px solid $orange !important;
+  color: $orange !important;
 }
 .bs-btn.bs-btn-clear:hover,
 .bs-btn.bs-btn-clear:focus {
-  background: $black;
-  border: 2px solid $black;
-  color: $white;
+  background: $orange !important;
+  border: 2px solid $orange !important;
+  color: $white !important;
 }
 .bs-btn.bs-btn-black {
   background: $black;
@@ -239,6 +267,11 @@ body.modal-active {
 }
 .max-width-sixteen-hundred {
   max-width: 1600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.max-width-nine-seventy {
+  max-width: 970px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -343,11 +376,35 @@ ul.social-media-wrapper li a {
   background: $black;
   color: $white;
   display: inline-block;
-  @include transition(background);
+  opacity: .75;
+  @include transition(all);
 }
 #back-top a:hover,
 #back-top a:focus {
+  opacity: 1;
   background: $black;
+}
+#back-top a:before {
+  content: '';
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  position: absolute;
+  border: 2px solid #FFF;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  @include transition(all);
+}
+#back-top a:hover:before,
+#back-top a:focus:before {
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  opacity: 1;
+  top: 2px;
+  left: 2px;
 }
 .fourohfour-recent-posts ul {
   margin: 0;
@@ -396,13 +453,13 @@ ul.social-media-wrapper li a {
 
 /**** 2. HEADER STYLES ****/
 header#masthead {
-  position: absolute;
+  position: relative;
   display: table;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 99;
-  padding-top: 20px !important;
+  padding: 20px 0 !important;
   background-color: rgba(18,18,18,0);
   transition: all 500ms ease-out;
 
@@ -513,6 +570,9 @@ padding-top: 20px !important;
     .menu a:hover:not(.button) {
       background: none;
     }
+    > .menu > .active > a {
+      color: $blue !important;
+    }
     .menu .active > a {
       background: none;
       color: $white;
@@ -543,11 +603,12 @@ padding-top: 20px !important;
       margin-top: 20px;
       margin-right: -10px;
       z-index: -1;
-      background: $tealalpha !important;
-      border-top: 2px solid $gray;
+      background: $blue !important;
+      border-top: 2px solid $purple;
       @include transition(all);
     }
     .menu .dropdown li a {
+      color: $white;
       height: auto;
       line-height: 1;
       padding: 10px 0 !important;
@@ -564,7 +625,7 @@ padding-top: 20px !important;
     .menu .dropdown li:hover a,
     .menu .dropdown li:focus a {
       color: $white !important;
-      background: $dkteal;
+      background: $purple;
     }
     .menu .dropdown li a:hover:after {
       content: '';
@@ -587,6 +648,106 @@ padding-top: 20px !important;
     }
   }
 }
+nav.top-bar.has-search {
+
+  ul.desktop-menu {
+    width: calc(100% - 36px);
+    float: left;
+  }
+  .top-bar-right {
+    float: right;
+  }
+  .menu-search-wrapper {
+    width: 36px;
+    height: 36px;
+    float: right;
+    position: relative;
+  }
+  .menu-search-wrapper button {
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 1.25rem;
+  }
+  .menu-search-wrapper form#searchform {
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    padding: 14px;
+    margin: 40px 0 0 0;
+    border: 2px solid $blue;
+    border-radius: 4px;
+    background: $white;
+    @include transition(all);
+  }
+  .menu-search-wrapper form#searchform.show {
+    opacity: 1;
+    visibility: visible;
+    margin: 10px 0 0 0;
+  }
+  .menu-search-wrapper form#searchform:after,
+  .menu-search-wrapper form#searchform:before {
+    bottom: 100%;
+    right: 7px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .menu-search-wrapper form#searchform:before {
+    right: 4px;
+  }
+  .menu-search-wrapper form#searchform:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: $white;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  .menu-search-wrapper form#searchform:before {
+    border-color: rgba(54, 97, 175, 0);
+    border-bottom-color: $blue;
+    border-width: 13px;
+    margin-left: -13px;
+  }
+  .menu-search-wrapper input#searchsubmit {
+    width: 100%;
+  }
+  .menu-search-wrapper .input-group {
+    margin: 0;
+  }
+  input#s {
+    padding: 0 5px;
+    line-height: 2.125rem;
+    height: auto;
+    box-shadow: none;
+    border: 1px solid $blue;
+  }
+  input#s::-webkit-input-placeholder,
+  input#s::-moz-placeholder,
+  input#s:-moz-placeholder,
+  input#s:-ms-input-placeholder {
+    font-size: .875rem !important;
+    font-family: $ptsans !important;
+  }
+  input#searchsubmit {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    padding: 0 10px;
+    line-height: 2.25rem;
+    border: 0;
+    background: $blue;
+    font-family: $ptsans !important;
+  }
+}
 
 @media #{$break972} {
   .top-bar .top-bar-right {
@@ -604,7 +765,8 @@ padding-top: 20px !important;
 }
 @media only screen and (max-width: 43.125em) and (min-width: 40em) {
   .top-bar .top-bar-right .menu > li > a {
-    font-size: 1.25em;
+    font-size: 1.15em;
+    padding: 0 8px !important;
   }
 }
 @media #{$break800} {
@@ -613,13 +775,16 @@ padding-top: 20px !important;
   // }
 }
 @media #{$break639} {
-  .off-canvas-wrapper-inner {
-    will-change: transform;
+  header#masthead, .top-bar {
+    padding: 0 !important;
   }
   .off-canvas > ul.menu {
     height: auto;
   }
   .top-bar-social {
+    display: none;
+  }
+  .menu-search-wrapper {
     display: none;
   }
   .top-bar .top-bar-right .menu > li > a {
@@ -653,6 +818,56 @@ nav.off-canvas {
     display: block;
     margin: 0 auto;
     padding: 10px 0;
+  }
+  .vertical.menu {
+    padding: 0;
+  }
+  > .menu > li > a {
+    padding: 10px;
+  }
+  > .menu .active > a {
+    background: $blue;
+  }
+  > .menu .active > a:after {
+    border-top-color: $white !important;
+  }
+  .is-accordion-submenu-parent > a::after {
+    right: 10px;
+  }
+  .nested.submenu {
+    margin: 0 !important;
+  }
+  .submenu > li > a {
+    padding: 10px 10px 10px 20px;
+  }
+  ul.social-media-wrapper {
+    margin: 10px 0;
+    padding: 0 0px;
+    text-align: center;
+  }
+  ul.social-media-wrapper li {
+    margin: 0;
+  }
+  form#searchform {
+    margin: 20px 0 0 0;
+    padding: 0 15px;
+  }
+  input#s {
+    padding: 0 5px;
+    line-height: 2.125rem;
+    height: auto;
+    box-shadow: none;
+    border: 1px solid $blue;
+  }
+  input#searchsubmit {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    padding: 0 10px;
+    line-height: 2.25rem;
+    border: 0;
+    background: $blue;
+    font-family: $ptsans !important;
   }
 
 }
@@ -727,6 +942,7 @@ ul.social-media-wrapper {
     background: $yellow;
     color: #FFF;
     padding: 0 10px;
+    @include transition(background);
   }
   li.custom-button a:hover,
   li.custom-button a:focus {
@@ -760,8 +976,238 @@ body.shrink-logo {
     }
 
   }
+  .home-hero-wrapper {
+    min-height: 700px;
+    position: relative;
+  }
+  .home-hero-wrapper:after {
+    content: '';
+    width: 100%;
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+    background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/09/zigzag-repeat-optim.png);
+    background-size: 37px 15px;
+  }
+  .home-hero-wrapper > .vc_column_container {
+    position: absolute;
+    bottom: 180px;
+  }
+  .home-hero-wrapper > .vc_column_container h2,
+  .home-hero-wrapper > .vc_column_container h3 {
+    text-align: center;
+    color: #FFF;
+  }
+  .home-hero-wrapper > .vc_column_container h2 {
+    font-size: 4.5rem;
+  }
+  .home-hero-wrapper > .vc_column_container h3 {
+    font-size: 3.75rem;
+    font-weight: 400
+  }
 
 }
+.portals-inner {
+  display: table;
+  max-width: 1170px;
+  margin: 40px auto;
+
+  .portal {
+    position: relative;
+    display: table-cell;
+    width: 20%;
+    text-align: center;
+    padding: 20px;
+  }
+  .portal:before {
+    content: '';
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    position: absolute;
+    border: 4px solid #FFF;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    opacity: 0;
+    @include transition(all);
+  }
+  .portal:hover:before,
+  .portal:focus:before {
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    opacity: 1;
+    top: 4px;
+    left: 4px;
+  }
+  .portal a {
+    display: block;
+    position: relative;
+    z-index: 10;
+  }
+  .portal img {
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+  }
+  .portal h3 {
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 1.5625rem;
+    margin: 8px 0 0 0;
+  }
+  // .portal-1 {
+  //   border: 4px solid #49b1b6;
+  // }
+  // .portal-2 {
+  //   border: 4px solid #20575f;
+  // }
+  // .portal-3 {
+  //   border: 4px solid #5b3483;
+  // }
+  // .portal-4 {
+  //   border: 4px solid #f7871f;
+  // }
+  // .portal-5 {
+  //   border: 4px solid #cc2f7e;
+  // }
+  .portal-1 {
+    background: #49b1b6;
+  }
+  .portal-2 {
+    background: #20575f;
+  }
+  .portal-3 {
+    background: #5b3483;
+  }
+  .portal-4 {
+    background: #f7871f;
+  }
+  .portal-5 {
+    background: #cc2f7e;
+  }
+
+}
+
+.mission-wrapper {
+
+  p {
+    text-align: center;
+    font-size: 1.1875rem !important;
+  }
+
+}
+
+h3.img-bg-heading,
+a.img-bg-heading {
+  position: relative;
+  font-size: 3.3125rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 5px #555;
+  width: 100%;
+  display: block;
+  padding: 60px 20px;
+  text-align: center;
+  color: #FFF !important;
+  line-height: 1.2;
+}
+h3.img-bg-heading-about,
+a.img-bg-heading-about {
+  background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/10/about-the-festival.jpg) no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+a.img-bg-heading:before {
+  content: '';
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  position: absolute;
+  border: 4px solid #FFF;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  @include transition(all);
+}
+a.img-bg-heading:hover:before,
+a.img-bg-heading:focus:before {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  opacity: 1;
+  top: 4px;
+  left: 4px;
+}
+
+div#instafeed {
+  margin-left: -30px;
+  margin-bottom: 20px;
+
+  .slick-slide img {
+    padding: 0 0 0 30px;
+    width: 100% !important;
+    height: auto !important;
+  }
+  a.instagram-image {
+    position: relative;
+  }
+  a.instagram-image:before {
+    content: '';
+    top: -2px;
+    left: 28px;
+    z-index: 1;
+    pointer-events: none;
+    position: absolute;
+    border: 4px solid #FFF;
+    width: calc(100% - 30px);
+    height: 100%;
+    box-sizing: border-box;
+    opacity: 0;
+    @include transition(all);
+  }
+  a.instagram-image:hover:before {
+    width: calc(100% - 38px);
+    height: calc(100% - 8px);
+    opacity: 1;
+    top: 4px;
+    left: 34px;
+  }
+  a.instagram-image span {
+    position: absolute;
+    transform: translateY(0);
+    left: 30px;
+    padding: 10px;
+    color: #FFF;
+    text-align: center;
+    width: calc(100% - 30px);
+    background: rgba(247,135,31,.85);
+    -webkit-transition: transform .2s ease-out;
+    -moz-transition: transform .2s ease-out;
+    -o-transition: transform .2s ease-out;
+    transition: transform .2s ease-out;
+  }
+  a.instagram-image:hover span {
+    transform: translateY(-100%);
+  }
+  ul.slick-dots {
+    margin-left: 30px !important;
+    width: calc(100% - 30px) !important;
+    bottom: -20px !important;
+  }
+  ul.slick-dots li button {
+    background: #FFF !important;
+    border: 3px solid #f7871f !important;
+  }
+  ul.slick-dots li[aria-hidden="false"] button {
+    background: #f7871f !important;
+    border-color: #f7871f !important;
+  }
+
+}
+
 body:not(.mobile) .home-hero-wrapper {
   background-position: bottom center !important;
 }
@@ -788,6 +1234,15 @@ body.mobile .home-hero-wrapper {
     height: 100% !important;
   }
 }
+@media only screen and (max-width: 53.75em) {
+  .portals-inner .portal {
+    display: block;
+    width: 100%;
+  }
+  .portals-inner {
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 48.875em) {
   .admin-bar header#masthead.sticky-header {
     top: 46px;
@@ -805,6 +1260,13 @@ body.mobile .home-hero-wrapper {
   }
   .admin-bar header#masthead.sticky-header {
     top: 46px !important;
+  }
+  .home .home-hero-wrapper > .vc_column_container h2 {
+    font-size: 3.75rem;
+  }
+  .home .home-hero-wrapper > .vc_column_container h3 {
+    font-size: 3rem;
+    font-weight: 400
   }
   // .top-bar .top-bar-right {
   //   ul#menu-main-navigation {
@@ -837,6 +1299,80 @@ div#page-full-width {
     padding-right: 25px;
   }
 }
+#featured-hero {
+  height: 18.75rem;
+
+  h2.page-header-tagline {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    padding: 5px 15px 8px;
+    background: rgba(0,0,0,.5);
+    color: #FFF;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 1.2;
+    font-size: 2rem !important;
+  }
+
+}
+h1.entry-title {
+  font-size: 2.25rem;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 38px;
+
+  &:after {
+    content: '';
+    width: 107px;
+    height: 19px;
+    position: absolute;
+    display: block;
+    background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/09/after-triangles-optim.png) no-repeat center center;
+    background-size: 107px 19px;
+  }
+
+}
+body:not(.home) .entry-content {
+
+  a {
+    color: $pink;
+    text-shadow: 1px 2px 0 #FFF;
+    position: relative;
+    display: inline-block;
+    z-index: 99;
+  }
+  a:after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    background: $pink;
+    left: 0;
+    z-index: -1;
+  }
+  p, span, li, a {
+    font-size: 1.1875rem !important;
+  }
+  h2 {
+    font-size: 2rem !important;
+  }
+  h3 {
+    font-size: 1.75rem !important;
+  }
+  h4 {
+    font-size: 1.5rem !important;
+  }
+  h5, h6 {
+    font-size: 1.25rem !important;
+  }
+
+}
+
 
 /* 4a. 404 Page Styles and Archive Styles */
 div#four-o-four-wrapper {
@@ -874,6 +1410,62 @@ div#page.archives-wrapper {
 
 }
 
+/* 4c. Sidebar Styles */
+@media only screen and (min-width: 768px) {
+  .sidebar {
+
+    .portals-inner .portal {
+      display: block;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .portals-inner .portal a {
+      display: table;
+      flex-direction: row;
+    }
+    .portals-inner .portal a img {
+      width: 80px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .portals-inner .portal a h3 {
+      display: table-cell;
+      width: calc(100% - 80px);
+      padding-left: 20px;
+      vertical-align: middle;
+    }
+
+  }
+}
+@media #{$break767} {
+  .sidebar {
+
+    .portals-inner .portal {
+      margin-bottom: 4px;
+    }
+
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 768px) {
+  #page .main-content {
+    width: calc(100% - 300px);
+  }
+  #page .sidebar {
+    width: 300px;
+  }
+}
+@media #{$break767} {
+  #page .main-content {
+    width: 100%;
+    float: none;
+  }
+  #page .sidebar {
+    width: 100%;
+    float: none;
+  }
+}
+
 
 /**** 5. PORTFOLIO PAGE STYLES ****/
 
@@ -881,17 +1473,156 @@ div#page.archives-wrapper {
 
 /**** 6. FOOTER STYLES ****/
 #footer-container {
-  background: $white;
+  background: $black;
 }
 #footer-container #footer {
-  max-width: 100rem;
+  max-width: 75rem;
+  padding: 3.75rem 0 2rem;
+  background-image: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/10/chalk-it-up-cloud-optim.png);
+  background-size: 257px 149px;
+  background-position: calc(100% - 29%) calc(100% - -30px);
+  background-repeat: no-repeat;
+
+  a {
+    @include transition(color);
+  }
+  a:hover,
+  a:focus {
+    color: $teal;
+  }
+  .large-3:first-of-type {
+    width: 42.7351%;
+  }
+  .large-3:nth-of-type(2),
+  .large-3:nth-of-type(3) {
+    width: 17.0940%;
+  }
+  .large-3:nth-of-type(4) {
+    width: 23.0769%;
+  }
+  h6 {
+    color: $white;
+    font-size: 1.125rem;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+  .large-3:first-of-type h6 {
+    position: relative;
+  }
+  .large-3:first-of-type h6:after {
+    content: '';
+    position: absolute;
+    width: 107px;
+    height: 19px;
+    margin-left: 6px;
+    display: inline-block;
+    background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/09/after-triangles-optim.png) no-repeat center center;
+    background-size: 107px 19px;
+  }
+  ul.menu li {
+    display: block;
+    padding: 0;
+  }
+  ul.menu li a {
+    padding: 0;
+    color: $ltgray;
+    display: block;
+    line-height: 1.6;
+    text-transform: uppercase;
+    @include transition(color);
+  }
+  ul.menu li a:hover,
+  ul.menu li a:focus {
+    color: $teal;
+  }
+  ul.menu li.active a {
+    background: none;
+    color: $yellow;
+  }
+  p, li, a, span {
+    color: $ltgray;
+    line-height: 1.6;
+  }
+  ul.social-media-wrapper li.facebook a {
+    color: $teal !important;
+  }
+  ul.social-media-wrapper li.twitter a {
+    color: $yellow !important;
+  }
+  ul.social-media-wrapper li.flickr a {
+    color: $pink !important;
+  }
+  ul.social-media-wrapper li.instagram a {
+    color: $white !important;
+  }
+  ul.social-media-wrapper li.facebook a:hover,
+  ul.social-media-wrapper li.facebook a:focus,
+  ul.social-media-wrapper li.twitter a:hover,
+  ul.social-media-wrapper li.twitter a:focus,
+  ul.social-media-wrapper li.flickr a:hover,
+  ul.social-media-wrapper li.flickr a:focus,
+  ul.social-media-wrapper li.instagram a:hover,
+  ul.social-media-wrapper li.instagram a:focus {
+    color: $white !important;
+  }
 }
-#footer {
-}
-@media only screen and (max-width: 101.875rem) {
+// @media only screen and (max-width: 101.875rem) {
+//   #footer-container #footer {
+//     padding-left: .9375rem;
+//     padding-right: .9375rem;
+//   }
+// }
+@media #{$break1024} {
   #footer-container #footer {
-    padding-left: .9375rem;
-    padding-right: .9375rem;
+    margin-bottom: -1px;
+    background-position: calc(100% - 62%) calc(100% - -60px);
+
+    .large-3:first-of-type {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .large-3:nth-of-type(2),
+    .large-3:nth-of-type(3),
+    .large-3:nth-of-type(4) {
+      width: 33.3333%;
+    }
+
+  }
+}
+@media #{$break639} {
+  #footer-container #footer {
+    background-position: calc(100% - -6%) calc(100% - -22px);
+
+    .large-3:nth-of-type(2),
+    .large-3:nth-of-type(3) {
+      width: 50%;
+      margin-bottom: 40px;
+    }
+    .large-3:nth-of-type(3) {
+      clear: right;
+    }
+    .large-3:nth-of-type(4) {
+      width: 50%;
+      float: left !important;
+      clear: both;
+    }
+
+  }
+}
+@media #{$break480} {
+  #footer-container #footer {
+    padding-bottom: 120px;
+    background-position: center calc(100% - -22px);
+
+    .large-3:nth-of-type(2),
+    .large-3:nth-of-type(3) {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .large-3:nth-of-type(4) {
+      width: 100%;
+    }
+
   }
 }
 

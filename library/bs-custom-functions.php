@@ -66,6 +66,21 @@ function bs_social_urls_shortcode( $atts ) {
 }
 
 
+// Instagram Feed Shortcode
+function bs_instagram_feed( $atts ) {
+  extract( shortcode_atts(array(), $atts) );
+  ob_start(); ?>
+
+  <div id="instafeed"></div>
+
+  <?php
+    wp_enqueue_script( 'instafeed', get_template_directory_uri() . '/assets/javascript/instafeed.js', array('jquery'), '1.0', true );
+    $bs_ig_feed_variable = ob_get_clean();
+    return $bs_ig_feed_variable;
+}
+add_shortcode( 'bs_ig_feed', 'bs_instagram_feed' );
+
+
 // BS Social Share shortcode
 add_shortcode( 'bs_social_share', 'bs_social_share_shortcode' );
 function bs_social_share_shortcode( $atts ) {

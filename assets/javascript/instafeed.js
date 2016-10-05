@@ -5,14 +5,14 @@ var userFeed = new Instafeed({
   get: 'user',
   userId: 609318530,
   accessToken: '609318530.564bc1f.e9e7f530a82743d99f43dc70eb6ddc9a',
-  limit: 24,
+  limit: 12,
   resolution: 'standard_resolution',
-  template: '<a class="instagram-image" href="{{link}}" target="_blank" title="{{caption}}"><img class="instafeed-img" src="{{image}}" /><span class="ig-caption">{{caption}}<br /><i class="fa fa-heart"></i> {{likes}} &nbsp;•&nbsp; <i class="fa fa-comment"></i> {{comments}}</span></a>',
+  template: '<a class="instagram-image" href="{{link}}" target="_blank" rel="noopener" title="{{caption}}"><img class="instafeed-img" src="{{image}}" /><span class="ig-caption"><i class="fa fa-heart"></i> {{likes}} &nbsp;•&nbsp; <i class="fa fa-comment"></i> {{comments}}</span></a>',
   after: function() {
     jQuery('#instafeed').slick({
       infinite: true,
-      slidesToShow: 5,
-      slidesToScroll: 5,
+      slidesToShow: 3,
+      slidesToScroll: 3,
       rows: 1,
       centerPadding: '0px',
       arrows: false,
@@ -20,7 +20,6 @@ var userFeed = new Instafeed({
       autoplaySpeed: 5000,
       easing: 'ease-out-back',
       dots: true,
-      arrows: true,
       prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></a>',
       nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></a>',
       responsive: [{
@@ -34,7 +33,7 @@ var userFeed = new Instafeed({
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,

@@ -118,6 +118,14 @@ function newuptown_customize_register( $wp_customize ) {
       'type' => 'checkbox',
       'description' => 'Check this box to enable the sticky header',
   ) ) );
+  // Search in menu
+  $wp_customize->add_setting( 'search-menu' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'search-menu', array(
+      'label' => __( 'Search in menu?', '_s' ),
+      'section' => 'header-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to enable the search icon to main menu',
+  ) ) );
 
 
   // Add Copyright Section

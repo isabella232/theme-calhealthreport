@@ -70,7 +70,7 @@
 			<button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
 		</div>
 
-		<nav id="site-navigation" class="main-navigation top-bar" role="navigation">
+		<nav id="site-navigation" class="main-navigation top-bar <?php if( get_theme_mod('search-menu') != '') { ?>has-search<?php } ?>" role="navigation">
 			<div class="top-bar-right">
 				<?php if( get_theme_mod('facebook') || get_theme_mod('twitter') || get_theme_mod('linkedin') || get_theme_mod('instagram') || get_theme_mod('youtube') || get_theme_mod('pinterest') || get_theme_mod('rss') || get_theme_mod('vimeo')) { ?>
 				<div class="top-bar-social">
@@ -78,6 +78,12 @@
 				</div>
 				<?php } ?>
 				<?php foundationpress_top_bar_r(); ?>
+				<?php if( get_theme_mod('search-menu') != '') { ?>
+				<div class="menu-search-wrapper">
+					<button class="search-toggle"><i class="fa fa-search" aria-hidden="true"></i></button>
+					<?php get_search_form(); ?>
+				</div>
+				<?php } ?>
 
 				<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'topbar' ) : ?>
 					<?php get_template_part( 'template-parts/mobile-top-bar' ); ?>

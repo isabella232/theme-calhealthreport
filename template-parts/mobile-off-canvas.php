@@ -11,6 +11,7 @@
   <?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
   <?php foundationpress_mobile_nav(); ?>
   <?php get_template_part('template-parts/social-media'); ?>
+  <?php get_search_form(); ?>
 </nav>
 
 <div class="off-canvas-content" data-off-canvas-content>

@@ -18,13 +18,13 @@
 				<?php do_action( 'foundationpress_after_footer' ); ?>
 			</footer>
 
-			<footer id="copyright">
+			<!-- <footer id="copyright">
 				<?php if( get_theme_mod('copyright')): ?>
 					<p>&copy; <?php echo date('Y'); ?> <?php echo get_theme_mod('copyright','default'); ?></p>
 				<?php else: ?>
 					<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
 				<?php endif; ?>
-			</footer>
+			</footer> -->
 		</div>
 		<div id="back-top">
   		<a href="#" title="Back to top"><i class="fa fa-chevron-up"></i></a>
@@ -55,6 +55,12 @@
 	}
 
 	jQuery(document).ready(function($) {
+
+		// Show/Hide Search Form
+		$('button.search-toggle').click(function() {
+			$('nav.top-bar.has-search .menu-search-wrapper form#searchform').toggleClass('show');
+		});
+
 		// $('input[type="checkbox"]').click(function() {
 		// 	var inputID = $(this).attr('id');
 		//  	$('label[for="' + inputID + '"]').toggleClass('checked');
