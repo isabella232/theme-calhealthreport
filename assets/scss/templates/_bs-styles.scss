@@ -467,6 +467,7 @@ header#masthead {
     padding-left: 0 !important;
     width: 250px;
     display: table-cell;
+    vertical-align: top;
   }
   .logo-wrapper img {
     max-width: 250px;
@@ -476,6 +477,7 @@ header#masthead {
   .main-navigation {
     width: calc(100% - 250px);
     display: table-cell;
+    vertical-align: top;
   }
 
 }
@@ -653,9 +655,11 @@ nav.top-bar.has-search {
   ul.desktop-menu {
     width: calc(100% - 36px);
     float: left;
+    text-align: right;
   }
   .top-bar-right {
     float: right;
+    width: 100%;
   }
   .menu-search-wrapper {
     width: 36px;
