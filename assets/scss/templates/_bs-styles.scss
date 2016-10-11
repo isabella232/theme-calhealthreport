@@ -466,7 +466,7 @@ header#masthead {
   .logo-wrapper {
     padding-left: 0 !important;
     width: 250px;
-    display: table-cell;
+    display: table-cell !important;
     vertical-align: top;
   }
   .logo-wrapper img {
@@ -476,10 +476,13 @@ header#masthead {
   }
   .main-navigation {
     width: calc(100% - 250px);
-    display: table-cell;
+    display: table-cell !important;
     vertical-align: top;
   }
 
+}
+.browsers-safari header#masthead .logo-wrapper img {
+  width: 250px;
 }
 header#masthead.sticky-header {
   position: fixed;
@@ -493,6 +496,10 @@ header#masthead.sticky-header {
     height: 80px !important;
   }
 }
+.browsers-safari .title-bar-title a.custom-logo-link img {
+  width: auto;
+  height: 80px !important;
+}
 
 @media #{$break972} {
   header#masthead {
@@ -500,7 +507,7 @@ header#masthead.sticky-header {
 
     .logo-wrapper {
       width: 100%;
-      display: block;
+      display: block !important;
     }
     .logo-wrapper img {
       display: block;
@@ -508,11 +515,16 @@ header#masthead.sticky-header {
     }
     .main-navigation {
       width: 100%;
-      display: block;
+      display: block !important;
     }
 
   }
 
+}
+@media #{$break639} {
+  header#masthead .logo-wrapper.hide-for-small-only {
+    display: none !important;
+  }
 }
 
 /* 2a. Top Bar and Main Nav Styles */
