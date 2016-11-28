@@ -144,3 +144,40 @@ ob_start(); ?>
 <?php $bs_social_variable = ob_get_clean();
 return $bs_social_variable;
 }
+
+
+// Services Shortcode
+add_shortcode( 'services_loop', 'bs_services_loop' );
+function bs_services_loop( $atts ) {
+    $args = shortcode_atts( array(
+			'category' => '',
+    ), $atts, 'services_loop' );
+    ob_start();
+    $query = new WP_Query( array(
+      'post_type' => 'service',
+			'order_by' => 'date',
+			'order' => 'ASC',
+      'posts_per_page' => -1,
+    ) );
+
+    if ( $query->have_posts() ) :
+      while ( $query->have_posts() ) : $query->the_post(); ?>
+        <?php
+            $image_id = get_post_thumbnail_id();
+						$image_url = wp_get_attachment_image_src($image_id,'full', true);
+            $post_id = get_the_ID();
+						global $post;
+        ?>
+        <article <?php post_class('service-main-content') ?> id="<?php echo $post->post_name; ?>">
+          <section class="entry-content">
+            <h3 class="service-title"><?php the_title(); ?></h3>
+						<?php if( $image_id ) { ?><img src="<?php echo $image_url[0]; ?>" style="margin: 10px 0; width: 100%; max-width: 100%; height: auto;" alt="Service featured image" /><?php } ?>
+						<div class="service-content<?php if( $image_id ) { ?> has-featured-image<?php } ?>">
+							<?php the_content(); ?>
+						</div>
+          </section>
+        </article>
+      <?php endwhile; wp_reset_postdata(); ?>
+      <?php $myvariable = ob_get_clean(); return $myvariable;
+    endif;
+}

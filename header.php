@@ -15,11 +15,10 @@
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-		<meta name="theme-color" content="#a72535">
+		<?php if( get_theme_mod('meta_color')): ?>
+		<meta name="theme-color" content="<?php echo esc_attr(get_theme_mod('highlight_color','default')); ?>">
+		<?php endif; ?>
 		<?php wp_head(); ?>
-		<script src="https://use.typekit.net/bzj8eoq.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
 		<link rel="icon" sizes="192x192" href="<?php bloginfo('url'); ?>/wp-content/uploads/2016/08/favicon.png">
 		<?php if( get_theme_mod('analytics')): ?><?php echo get_theme_mod('analytics','default'); ?><?php endif; ?>
 	</head>
@@ -75,6 +74,11 @@
 				<?php if( get_theme_mod('facebook') || get_theme_mod('twitter') || get_theme_mod('linkedin') || get_theme_mod('instagram') || get_theme_mod('youtube') || get_theme_mod('pinterest') || get_theme_mod('rss') || get_theme_mod('vimeo')) { ?>
 				<div class="top-bar-social">
 					<?php get_template_part('template-parts/social-media'); ?>
+					<?php if( get_theme_mod('search-above-menu') != '') { ?>
+					<div class="above-menu-search-wrapper">
+						<?php get_search_form(); ?>
+					</div>
+					<?php } ?>
 				</div>
 				<?php } ?>
 				<?php foundationpress_top_bar_r(); ?>

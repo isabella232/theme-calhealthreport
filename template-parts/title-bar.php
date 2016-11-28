@@ -4,9 +4,9 @@
 	$image = $image[0];
 	if ( has_post_thumbnail( $post->ID ) ) :
 ?>
-	<header id="featured-hero" role="banner" style="background: url('<?php echo $image; ?>') no-repeat center bottom; background-size: cover;"><h2 class="page-header-tagline"><?php bloginfo('description'); ?></h2></header>
+	<header id="featured-hero" role="banner" style="background: url('<?php echo $image; ?>') no-repeat center bottom; background-size: cover;"><h1 class="entry-title"><?php the_title(); ?></h1></header>
 	<div id="init-header-change"></div>
 <?php else: ?>
-	<header id="featured-hero" role="banner" style="background: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/img/title-bar-image.jpg') no-repeat center bottom; background-size: cover;"><h2 class="page-header-tagline"><?php bloginfo('description'); ?></h2></header>
+	<header id="featured-hero" role="banner" style="background: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/img/title-bar-image.jpg') no-repeat center bottom; background-size: cover;"><h1 class="entry-title"><?php the_title(); ?></h1></header>
 	<div id="init-header-change"></div>
 <?php endif; ?>

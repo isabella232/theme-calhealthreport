@@ -56,7 +56,7 @@ $thumb = get_field('bs_portfolio_thumbnail');
                           <h4 class="portfolio-title"><?php the_title(); ?></h4>
                           <ul class="portfolio-category"><?php $terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $terms as $term ) { echo '<li class="cat-name">' . $term->name . '</li>'; } ?></ul>
                           <img src="<?php echo $thumb['url']; ?>" class="lazyload portfolio-thumbnail" alt="<?php the_title();?> portfolio thumbnail" />
-                          <span class="cat-link">+</span>
+                          <span class="cat-link"></span>
                           <canvas class="portfolio-overlay"></canvas>
                         </section>
                       </a>

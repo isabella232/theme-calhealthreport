@@ -1,4 +1,9 @@
 			<ul class="social-media-wrapper">
+				<?php if( get_theme_mod('search-social-menu') != '') { ?>
+				<li class="inline-social-search-wrapper">
+					<?php get_search_form(); ?>
+				</li>
+				<?php } ?>
 				<?php if( get_theme_mod('facebook')): ?><li class="facebook"><a href="<?php echo get_theme_mod('facebook','default'); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('twitter')): ?><li class="twitter"><a href="<?php echo get_theme_mod('twitter','default'); ?>" target="_blank"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('linkedin')): ?><li class="linkedin"><a href="<?php echo get_theme_mod('linkedin','default'); ?>" target="_blank"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
