@@ -1119,6 +1119,19 @@ body.shrink-logo {
     height: 30rem;
   }
 }
+@media only screen and (max-width: 39.9375rem) {
+  .home header#masthead.header-option-two {
+    max-height: 23.4375em;
+    height: 100vh;
+  }
+  .admin-bar.home header#masthead.header-option-two {
+    max-height: calc(23.4375em - 32px);
+    height: calc(100vh - 32px);
+  }
+  .not-home header#masthead.header-option-two {
+    height: 20rem;
+  }
+}
 header#masthead.header-option-two {
   padding: 1.25rem 0 0 !important;
   display: table;

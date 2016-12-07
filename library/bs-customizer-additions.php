@@ -693,8 +693,8 @@ body:before {
   background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
 }
 @media only screen and (max-width: 39.9375rem) {
-  header#masthead {
-    background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
+  header#masthead .title-bar {
+    background-color: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?> !important;
   }
   .off-canvas.position-right {
     background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
