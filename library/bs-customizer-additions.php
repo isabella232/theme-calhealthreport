@@ -14,14 +14,14 @@ function newuptown_customize_register( $wp_customize ) {
   // Color Section
   $wp_customize->get_section('colors')->panel = 'theme-colors';
   $wp_customize->add_panel( 'theme-colors' , array(
-    'title' => __( 'Colors', 'brentstemplate' ),
+    'title' => __( 'Colors', 'allonsy' ),
     'priority' => 20,
-    'description' => __( 'Customize your the theme colors in this section.', 'brentstemplate' ),
+    'description' => __( 'Customize your the theme colors in this section.', 'allonsy' ),
     'capability' => 'edit_theme_options',
   ) );
   $wp_customize->add_section('default_colors', array(
-    'title' => __('Default Colors', 'brentstemplate'),
-    'description' => __('Change the default colors of the template.', 'brentstemplate'),
+    'title' => __('Default Colors', 'allonsy'),
+    'description' => __('Change the default colors of the template.', 'allonsy'),
     'priority' => 105,
     'panel' => 'theme-colors',
   ));
@@ -37,7 +37,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Paragraph Text Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'paragraph_color',array(
-    'label' => __('Paragraph Text Color', 'brentstemplate'),
+    'label' => __('Paragraph Text Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'paragraph_color',
   )));
@@ -52,7 +52,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Link Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'link_color',array(
-    'label' => __('Link Color', 'brentstemplate'),
+    'label' => __('Link Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'link_color',
   )));
@@ -67,7 +67,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Link Hover Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'link_hover_color',array(
-    'label' => __('Link Hover Color', 'brentstemplate'),
+    'label' => __('Link Hover Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'link_hover_color',
   )));
@@ -82,7 +82,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H1 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading1_color',array(
-    'label' => __('H1 Color', 'brentstemplate'),
+    'label' => __('H1 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading1_color',
   )));
@@ -97,7 +97,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H2 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading2_color',array(
-    'label' => __('H2 Color', 'brentstemplate'),
+    'label' => __('H2 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading2_color',
   )));
@@ -112,7 +112,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H3 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading3_color',array(
-    'label' => __('H3 Color', 'brentstemplate'),
+    'label' => __('H3 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading3_color',
   )));
@@ -127,7 +127,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H4 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading4_color',array(
-    'label' => __('H4 Color', 'brentstemplate'),
+    'label' => __('H4 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading4_color',
   )));
@@ -142,7 +142,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H5 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading5_color',array(
-    'label' => __('H5 Color', 'brentstemplate'),
+    'label' => __('H5 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading5_color',
   )));
@@ -157,7 +157,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* H6 Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'heading6_color',array(
-    'label' => __('H6 Color', 'brentstemplate'),
+    'label' => __('H6 Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'heading6_color',
   )));
@@ -172,7 +172,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Page Title Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'pagetitle_color',array(
-    'label' => __('Page Title Color', 'brentstemplate'),
+    'label' => __('Page Title Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'pagetitle_color',
   )));
@@ -187,15 +187,15 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* highlight color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'highlight_color',array(
-    'label' => __('Highlight Color', 'brentstemplate'),
+    'label' => __('Highlight Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'highlight_color',
   )));
 
   /* header colors section */
   $wp_customize->add_section('header_colors', array(
-    'title' => __('Header Colors', 'brentstemplate'),
-    'description' => __('Change the colors in the header, such as header background and main nav colors.', 'brentstemplate'),
+    'title' => __('Header Colors', 'allonsy'),
+    'description' => __('Change the colors in the header, such as header background and main nav colors.', 'allonsy'),
     'priority' => 106,
     'panel' => 'theme-colors',
   ));
@@ -207,13 +207,28 @@ function newuptown_customize_register( $wp_customize ) {
     'transport' => 'postMessage',
     'capability' => 'edit_theme_options',
     'sanitize_callback' => 'sanitize_hex_color',
-    'priority' => 10,
+    'priority' => 5,
   ));
   /* Header Background Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'header_color',array(
-    'label' => __('Header Color', 'brentstemplate'),
+    'label' => __('Header Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'header_color',
+  )));
+  /* top level main nav bar background color setting */
+  $wp_customize->add_setting('main_nav_bar_bg_color', array(
+    'default' => '#FFFFFF',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 9,
+  ));
+  /* top level main nav bar background color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_bar_bg_color',array(
+    'label' => __('Top Level Nav Bar BG Color', 'allonsy'),
+    'section' => 'header_colors',
+    'settings' => 'main_nav_bar_bg_color',
   )));
   /* top level main nav color setting */
   $wp_customize->add_setting('main_nav_color', array(
@@ -226,7 +241,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_color',array(
-    'label' => __('Top Level Nav Color', 'brentstemplate'),
+    'label' => __('Top Level Nav Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_color',
   )));
@@ -241,7 +256,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav hover color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_hover_color',array(
-    'label' => __('Top Level Nav Hover/Focus Color', 'brentstemplate'),
+    'label' => __('Top Level Nav Hover/Focus Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_hover_color',
   )));
@@ -256,7 +271,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav submenu background color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_sub_bg_color',array(
-    'label' => __('Top Level Nav Sub Menu BG', 'brentstemplate'),
+    'label' => __('Top Level Nav Sub Menu BG', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_sub_bg_color',
   )));
@@ -271,7 +286,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav submenu li color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_sub_li_color',array(
-    'label' => __('Top Level Nav Sub Menu Item Color', 'brentstemplate'),
+    'label' => __('Top Level Nav Sub Menu Item Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_sub_li_color',
   )));
@@ -286,7 +301,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav submenu li hover color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_sub_li_hover_color',array(
-    'label' => __('Top Level Nav Sub Menu Item Hover Color', 'brentstemplate'),
+    'label' => __('Top Level Nav Sub Menu Item Hover Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_sub_li_hover_color',
   )));
@@ -301,15 +316,15 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* top level main nav submenu li hover color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'main_nav_sub_li_hover_bg_color',array(
-    'label' => __('Top Level Nav Sub Menu Item Hover BG Color', 'brentstemplate'),
+    'label' => __('Top Level Nav Sub Menu Item Hover BG Color', 'allonsy'),
     'section' => 'header_colors',
     'settings' => 'main_nav_sub_li_hover_bg_color',
   )));
 
   /* Footer colors section */
   $wp_customize->add_section('footer_colors', array(
-    'title' => __('Footer Colors', 'brentstemplate'),
-    'description' => __('Change the colors in the footer, such as footer background, headings, paragraph text, and link text colors.', 'brentstemplate'),
+    'title' => __('Footer Colors', 'allonsy'),
+    'description' => __('Change the colors in the footer, such as footer background, headings, paragraph text, and link text colors.', 'allonsy'),
     'priority' => 107,
     'panel' => 'theme-colors',
   ));
@@ -325,7 +340,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Footer BG color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'footer_bg_color',array(
-    'label' => __('Footer BG Color', 'brentstemplate'),
+    'label' => __('Footer BG Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'footer_bg_color',
   )));
@@ -340,7 +355,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Footer widget heading color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'footer_widget_heading_color',array(
-    'label' => __('Footer Widget Heading Color', 'brentstemplate'),
+    'label' => __('Footer Widget Heading Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'footer_widget_heading_color',
   )));
@@ -355,7 +370,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Footer widget paragraph color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'footer_widget_p_color',array(
-    'label' => __('Footer Widget Paragraph Color', 'brentstemplate'),
+    'label' => __('Footer Widget Paragraph Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'footer_widget_p_color',
   )));
@@ -370,7 +385,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Footer widget link color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'footer_widget_a_color',array(
-    'label' => __('Footer Widget Link Color', 'brentstemplate'),
+    'label' => __('Footer Widget Link Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'footer_widget_a_color',
   )));
@@ -385,24 +400,84 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Footer widget link hover color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'footer_widget_a_hover_color',array(
-    'label' => __('Footer Widget Link Hover Color', 'brentstemplate'),
+    'label' => __('Footer Widget Link Hover Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'footer_widget_a_hover_color',
+  )));
+  /* Copyright BG color setting */
+  $wp_customize->add_setting('copyright_bg_color', array(
+    'default' => '#272e31',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 14,
+  ));
+  /* Copyright BG color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_bg_color',array(
+    'label' => __('Copyright BG Color', 'allonsy'),
+    'section' => 'footer_colors',
+    'settings' => 'copyright_bg_color',
+  )));
+  /* Copyright Text color setting */
+  $wp_customize->add_setting('copyright_text_color', array(
+    'default' => '#FFFFFF',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 15,
+  ));
+  /* Copyright Text color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_text_color',array(
+    'label' => __('Copyright Text Color', 'allonsy'),
+    'section' => 'footer_colors',
+    'settings' => 'copyright_text_color',
+  )));
+  /* Copyright Link color setting */
+  $wp_customize->add_setting('copyright_link_color', array(
+    'default' => '#FFFFFF',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 16,
+  ));
+  /* Copyright Link color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_link_color',array(
+    'label' => __('Copyright Text Color', 'allonsy'),
+    'section' => 'footer_colors',
+    'settings' => 'copyright_link_color',
+  )));
+  /* Copyright Link Hover color setting */
+  $wp_customize->add_setting('copyright_link_hover_color', array(
+    'default' => '#FFFFFF',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 16,
+  ));
+  /* Copyright Link Hover color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_link_hover_color',array(
+    'label' => __('Copyright Text Color', 'allonsy'),
+    'section' => 'footer_colors',
+    'settings' => 'copyright_link_hover_color',
   )));
 
 
 
   // Add Social Media Section
   $wp_customize->add_section( 'social-media' , array(
-    'title' => __( 'Social Media', 'brentstemplate' ),
+    'title' => __( 'Social Media', 'allonsy' ),
     'priority' => 30,
-    'description' => __( 'Enter the URL to your account for each service for the icon to appear in the header.', 'brentstemplate' )
+    'description' => __( 'Enter the URL to your account for each service for the icon to appear in the header.', 'allonsy' )
   ) );
 
   // Add Facebook Setting
   $wp_customize->add_setting( 'facebook' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'facebook', array(
-      'label' => __( 'Facebook', 'brentstemplate' ),
+      'label' => __( 'Facebook', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'facebook',
   ) ) );
@@ -410,7 +485,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Twitter Setting
   $wp_customize->add_setting( 'twitter' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'twitter', array(
-      'label' => __( 'Twitter', 'brentstemplate' ),
+      'label' => __( 'Twitter', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'twitter',
   ) ) );
@@ -418,7 +493,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add LinkedIn Setting
   $wp_customize->add_setting( 'linkedin' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'linkedin', array(
-      'label' => __( 'LinkedIn', 'brentstemplate' ),
+      'label' => __( 'LinkedIn', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'linkedin',
   ) ) );
@@ -426,7 +501,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Flickr Setting
   $wp_customize->add_setting( 'flickr' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'flickr', array(
-      'label' => __( 'Flickr', 'brentstemplate' ),
+      'label' => __( 'Flickr', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'flickr',
   ) ) );
@@ -434,7 +509,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Instagram Setting
   $wp_customize->add_setting( 'instagram' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'instagram', array(
-      'label' => __( 'Instagram', 'brentstemplate' ),
+      'label' => __( 'Instagram', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'instagram',
   ) ) );
@@ -442,7 +517,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add YouTube Setting
   $wp_customize->add_setting( 'youtube' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'youtube', array(
-      'label' => __( 'YouTube', 'brentstemplate' ),
+      'label' => __( 'YouTube', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'youtube',
   ) ) );
@@ -450,7 +525,7 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Pinterest Setting
   $wp_customize->add_setting( 'pinterest' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'pinterest', array(
-      'label' => __( 'Pinterest', 'brentstemplate' ),
+      'label' => __( 'Pinterest', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'pinterest',
   ) ) );
@@ -458,15 +533,23 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Vimeo Setting
   $wp_customize->add_setting( 'vimeo' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'vimeo', array(
-      'label' => __( 'Vimeo', 'brentstemplate' ),
+      'label' => __( 'Vimeo', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'vimeo',
+  ) ) );
+
+  // Add Contact Setting
+  $wp_customize->add_setting( 'contact' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'contact', array(
+      'label' => __( 'Contact', 'allonsy' ),
+      'section' => 'social-media',
+      'settings' => 'contact',
   ) ) );
 
   // Add RSS Setting
   $wp_customize->add_setting( 'rss' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'rss', array(
-      'label' => __( 'RSS', 'brentstemplate' ),
+      'label' => __( 'RSS', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'rss',
   ) ) );
@@ -474,13 +557,13 @@ function newuptown_customize_register( $wp_customize ) {
   // Add Custom Button Setting
   $wp_customize->add_setting( 'custom' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom', array(
-      'label' => __( 'Custom Button', 'brentstemplate' ),
+      'label' => __( 'Custom Button', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'custom',
   ) ) );
   $wp_customize->add_setting( 'custom-text' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom-text', array(
-      'label' => __( 'Custom Button Text', 'brentstemplate' ),
+      'label' => __( 'Custom Button Text', 'allonsy' ),
       'section' => 'social-media',
       'settings' => 'custom-text',
   ) ) );
@@ -488,70 +571,112 @@ function newuptown_customize_register( $wp_customize ) {
 
   // Header Options
   $wp_customize->add_section( 'header-options' , array(
-    'title' => __( 'Header Options', 'brentstemplate' ),
+    'title' => __( 'Header Options', 'allonsy' ),
     'priority' => 40,
-    'description' => __( 'Choose options for the header.', 'brentstemplate' )
+    'description' => __( 'Choose options for the header.', 'allonsy' )
   ) );
   // Sticky Header
   $wp_customize->add_setting( 'sticky-header' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'sticky-header', array(
-      'label' => __( 'Sticky Header?', 'brentstemplate' ),
+      'label' => __( 'Sticky Header?', 'allonsy' ),
       'section' => 'header-options',
       'type' => 'checkbox',
       'description' => 'Check this box to enable the sticky header',
   ) ) );
-  // Search above menu
-  $wp_customize->add_setting( 'search-above-menu' , array( 'default' => '' ));
-  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'search-above-menu', array(
-      'label' => __( 'Search above menu?', 'brentstemplate' ),
+
+  // Search Position in Header
+  $wp_customize->add_setting( 'search-position' , array( 'default' => 'search-menu' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'search-position', array(
+      'label' => __( 'Search Bar Position?', 'allonsy' ),
       'section' => 'header-options',
-      'type' => 'checkbox',
-      'description' => 'Check this box to enable the search box above the menu, below the social media icons',
+      'type' => 'radio',
+      'choices' => array(
+        'search-menu' => 'In the Menu',
+        'search-above-menu' => 'Above Menu',
+        'search-social-menu' => 'Inline with Social Icons',
+        'search-hide' => 'Hide search for now'
+      ),
   ) ) );
-  // Search inline with social menu
-  $wp_customize->add_setting( 'search-social-menu' , array( 'default' => '' ));
-  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'search-social-menu', array(
-      'label' => __( 'Search inline with social menu?', 'brentstemplate' ),
+
+  // Header Layout
+  $wp_customize->add_setting( 'header-layout' , array( 'default' => 'menu-right' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'header-layout', array(
+      'label' => __( 'Header Layout?', 'allonsy' ),
       'section' => 'header-options',
-      'type' => 'checkbox',
-      'description' => 'Check this box to enable the search box to be inline with the social media icons',
+      'type' => 'radio',
+      'choices' => array(
+        'menu-right' => 'Logo Left, Menu Right',
+        'menu-bottom' => 'Logo Left, Menu Bottom'
+      ),
   ) ) );
-  // Search in menu
-  $wp_customize->add_setting( 'search-menu' , array( 'default' => '' ));
-  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'search-menu', array(
-      'label' => __( 'Search in menu?', 'brentstemplate' ),
-      'section' => 'header-options',
+
+  // Add Internal Page Section
+  $wp_customize->add_section( 'internal-pages' , array(
+    'title' => __( 'Internal Page Options', 'allonsy' ),
+    'priority' => 40,
+    'description' => __( 'Internal page options, such as title bar options, breadcrumbs, etc.', 'allonsy' )
+  ) );
+  // Title Bar with Background Image
+  $wp_customize->add_setting( 'internal-title-bar' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'internal-title-bar', array(
+      'label' => __( 'Title Bar with Background Image?', 'allonsy' ),
+      'section' => 'internal-pages',
       'type' => 'checkbox',
-      'description' => 'Check this box to enable the search icon to main menu',
+      'description' => 'Check this box to enable the title bar with background image on internal pages',
   ) ) );
+  // Default Title Bar Image URL
+  $wp_customize->add_setting( 'default-title-bar-image' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'default-title-bar-image', array(
+      'label' => __( 'Default Title Bar Image URL', 'allonsy' ),
+      'section' => 'internal-pages',
+      'settings' => 'default-title-bar-image',
+  ) ) );
+  // Enable Yoast Breadcrumbs
+  $wp_customize->add_setting( 'internal-breadcrumbs' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'internal-breadcrumbs', array(
+      'label' => __( 'Enable Breadcrumbs?', 'allonsy' ),
+      'section' => 'internal-pages',
+      'type' => 'checkbox',
+      'description' => 'Check this box to enable breadcrumbs. Note: You MUST have Yoast SEO plugin installed and the breadcrumbs options checked in the Yoast Advanced settings.',
+  ) ) );
+
 
 
   // Add Copyright Section
   $wp_customize->add_section( 'copyright-text' , array(
-    'title' => __( 'Copyright Text', 'brentstemplate' ),
+    'title' => __( 'Copyright Text', 'allonsy' ),
     'priority' => 1000,
-    'description' => __( 'Enter the copyright text to appear at the bottom of the page. Do not include the copyright symbol or the year as these are added automatically to the beginning of this line.', 'brentstemplate' )
+    'description' => __( 'Enter the copyright text to appear at the bottom of the page. Do not include the copyright symbol or the year as these are added automatically to the beginning of this line.', 'allonsy' )
   ) );
 
   // Add Copyright Text Field
   $wp_customize->add_setting( 'copyright' , array( 'default' => '' ) );
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'copyright', array(
-      'label' => __( 'Copyright', 'brentstemplate' ),
+      'label' => __( 'Copyright', 'allonsy' ),
       'section' => 'copyright-text',
       'settings' => 'copyright',
   ) ) );
 
+  // Social Media in Copyright Area
+  $wp_customize->add_setting( 'social-copyright' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'social-copyright', array(
+      'label' => __( 'Social Media in Copyright Section?', 'allonsy' ),
+      'section' => 'copyright-text',
+      'type' => 'checkbox',
+      'description' => 'Check this box to include social media icons in the copyright section',
+  ) ) );
+
   // Add Google Analytics Tracking Section
   $wp_customize->add_section( 'analytics-code' , array(
-    'title' => __( 'Analytics Tracking Code', 'brentstemplate' ),
+    'title' => __( 'Analytics Tracking Code', 'allonsy' ),
     'priority' => 2000,
-    'description' => __( 'Paste in the entire Google Analytics tracking code here.', 'brentstemplate' )
+    'description' => __( 'Paste in the entire Google Analytics tracking code here.', 'allonsy' )
   ) );
 
   // Add Google Analytics Tracking Field
   $wp_customize->add_setting( 'analytics' , array( 'default' => '' ) );
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'analytics-code', array(
-      'label' => __( 'Analytics Code', 'brentstemplate' ),
+      'label' => __( 'Analytics Code', 'allonsy' ),
       'type' => 'textarea',
       'section' => 'analytics-code',
       'settings' => 'analytics',
@@ -567,7 +692,7 @@ function bs_customize_css() { ?>
 body:before {
   background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
 }
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 39.9375rem) {
   header#masthead {
     background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
   }
@@ -580,9 +705,13 @@ p {
 }
 a {
   color: <?php echo esc_attr(get_theme_mod('link_color','#2199e8')); ?>;
+  -webkit-transition: color .2s ease-out;
+  -moz-transition: color .2s ease-out;
+  -o-transition: color .2s ease-out;
+  transition: color .2s ease-out;
 }
 a:hover, a:focus {
-  color: <?php echo esc_attr(get_theme_mod('link_color','#272e31')); ?>;
+  color: <?php echo esc_attr(get_theme_mod('link_hover_color','#272e31')); ?>;
 }
 h1 {
   color: <?php echo esc_attr(get_theme_mod('heading1_color','#d28441')); ?>;
@@ -605,7 +734,12 @@ h6 {
 h1.entry-title {
   color: <?php echo esc_attr(get_theme_mod('pagetitle_color','#FFFFFF')); ?>;
 }
-.top-bar .top-bar-right .menu > li > a,
+.header-option-one .top-bar .top-bar-right,
+.header-option-two .top-bar .top-bar-bottom {
+  background: <?php echo esc_attr(get_theme_mod('main_nav_bar_bg_color','#FFFFFF')); ?>;
+}
+.header-option-one .top-bar .top-bar-right .menu > li > a,
+.header-option-two .top-bar .top-bar-bottom .menu > li > a,
 nav.off-canvas > .menu > li > a,
 nav.off-canvas .submenu li a  {
   color: <?php echo esc_attr(get_theme_mod('main_nav_color','#272e31')); ?>;
@@ -614,28 +748,37 @@ nav.off-canvas .submenu li a  {
   -o-transition: color .2s ease-out;
   transition: color .2s ease-out;
 }
-.top-bar .top-bar-right .menu > li > a:hover,
-.top-bar .top-bar-right .menu > li > a:focus,
-.top-bar .top-bar-right > .menu > .active > a,
+.header-option-one .top-bar .top-bar-right .menu > li > a:hover,
+.header-option-one .top-bar .top-bar-right .menu > li > a:focus,
+.header-option-one .top-bar .top-bar-right > .menu > .active > a,
+.header-option-two .top-bar .top-bar-bottom .menu > li > a:hover,
+.header-option-two .top-bar .top-bar-bottom .menu > li > a:focus,
+.header-option-two .top-bar .top-bar-bottom > .menu > .active > a,
 nav.off-canvas .menu li a:hover,
 nav.off-canvas .menu li a:focus {
   color: <?php echo esc_attr(get_theme_mod('main_nav_hover_color','#d28441')); ?>;
 }
-.top-bar .top-bar-right .menu .dropdown {
+.header-option-one .top-bar .top-bar-right .menu .dropdown,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown {
   background: <?php echo esc_attr(get_theme_mod('main_nav_sub_bg_color','#e1e1e1')); ?>;
-  border-top: 4px solid <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+  border-top: 6px solid <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
-.top-bar .top-bar-right .menu .dropdown li a {
+.header-option-one .top-bar .top-bar-right .menu .dropdown li a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_color','#d28441')); ?>;
 }
-.top-bar .top-bar-right .menu .dropdown li:hover a,
-.top-bar .top-bar-right .menu .dropdown li:focus a,
-.top-bar .top-bar-right .menu .dropdown li.active a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li:hover a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li:focus a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li.active a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:hover a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:focus a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li.active a,
 nav.off-canvas .menu li.active > a {
-  color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_color','#FFFFFF')); ?>;
-  background: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_bg_color','#d28441')); ?>;
+  color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_color','#FFFFFF')); ?> !important;
+  background: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_bg_color','#d28441')); ?> !important;
 }
-.top-bar .top-bar-right .menu > li:after {
+.header-option-one .top-bar .top-bar-right .menu > li:after,
+.header-option-bottom .top-bar .top-bar-bottom .menu > li:after {
   background: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
 .above-menu-search-wrapper form#searchform :after,
@@ -648,22 +791,33 @@ nav.off-canvas .menu li.active > a {
 #footer-container #footer h6 {
   color: <?php echo esc_attr(get_theme_mod('footer_widget_heading_color','#FFFFFF')); ?>;
 }
-#footer-container #footer p, #footer-container #footer li, #footer-container #footer span, #footer-container #footer .vcard abbr, #copyright p {
+#footer-container #footer p, #footer-container #footer li, #footer-container #footer span, #footer-container #footer .vcard abbr {
   color: <?php echo esc_attr(get_theme_mod('footer_widget_p_color','#FFFFFF')); ?>;
 }
 #footer-container #footer a,
-#footer-container #footer ul.menu li a,
-#copyright a {
+#footer-container #footer ul.menu li a {
   color: <?php echo esc_attr(get_theme_mod('footer_widget_a_color','#FFFFFF')); ?>;
 }
 #footer-container #footer a:hover,
 #footer-container #footer a:focus,
 #footer-container #footer ul.menu li a:hover,
 #footer-container #footer ul.menu li a:focus,
-#footer-container #footer ul.menu li.active a,
-#copyright a:hover, #copyright a:focus {
+#footer-container #footer ul.menu li.active a {
   color: <?php echo esc_attr(get_theme_mod('footer_widget_a_hover_color','#d28441')); ?>;
 }
+#copyright-container {
+  background: <?php echo esc_attr(get_theme_mod('copyright_bg_color','#272e31')); ?>
+}
+#copyright p {
+  color: <?php echo esc_attr(get_theme_mod('copyright_text_color','#FFFFFF')); ?>;
+}
+#copyright a {
+  color: <?php echo esc_attr(get_theme_mod('copyright_link_color','#FFFFFF')); ?>;
+}
+#copyright a:hover, #copyright a:focus {
+  color: <?php echo esc_attr(get_theme_mod('copyright_link_hover_color','#FFFFFF')); ?>;
+}
+copyright_text_color
 </style>
 <?php }
 add_action( 'wp_head', 'bs_customize_css', 999);

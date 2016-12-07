@@ -1,4 +1,6 @@
 <?php
+$search_position = get_theme_mod('search-position');
+$header_layout = get_theme_mod('header-layout');
 /**
  * The template for displaying the header
  *
@@ -58,43 +60,10 @@
 
 	<?php do_action( 'foundationpress_layout_start' ); ?>
 
-	<header id="masthead" class="site-header <?php if( get_theme_mod( 'sticky-header' ) != '') { ?>sticky-header<?php } ?>" role="banner">
-		<div class="logo-wrapper hide-for-small-only">
-			<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
-		</div>
-		<div class="title-bar" data-responsive-toggle="site-navigation">
-			<div class="title-bar-title">
-				<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
-			</div>
-			<button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
-		</div>
-
-		<nav id="site-navigation" class="main-navigation top-bar <?php if( get_theme_mod('search-menu') != '') { ?>has-search<?php } ?>" role="navigation">
-			<div class="top-bar-right">
-				<?php if( get_theme_mod('facebook') || get_theme_mod('twitter') || get_theme_mod('linkedin') || get_theme_mod('instagram') || get_theme_mod('youtube') || get_theme_mod('pinterest') || get_theme_mod('rss') || get_theme_mod('vimeo')) { ?>
-				<div class="top-bar-social">
-					<?php get_template_part('template-parts/social-media'); ?>
-					<?php if( get_theme_mod('search-above-menu') != '') { ?>
-					<div class="above-menu-search-wrapper">
-						<?php get_search_form(); ?>
-					</div>
-					<?php } ?>
-				</div>
-				<?php } ?>
-				<?php foundationpress_top_bar_r(); ?>
-				<?php if( get_theme_mod('search-menu') != '') { ?>
-				<div class="menu-search-wrapper">
-					<button class="search-toggle"><i class="fa fa-search" aria-hidden="true"></i></button>
-					<?php get_search_form(); ?>
-				</div>
-				<?php } ?>
-
-				<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'topbar' ) : ?>
-					<?php get_template_part( 'template-parts/mobile-top-bar' ); ?>
-				<?php endif; ?>
-			</div>
-		</nav>
-	</header>
+	<?php
+		if( $header_layout == 'menu-right') { get_template_part('template-parts/header_option_one'); }
+		if( $header_layout == 'menu-bottom') { get_template_part('template-parts/header_option_two'); }
+	?>
 
 	<section class="container">
 		<?php do_action( 'foundationpress_after_header' );

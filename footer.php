@@ -17,13 +17,16 @@
 				<?php dynamic_sidebar( 'footer-widgets' ); ?>
 				<?php do_action( 'foundationpress_after_footer' ); ?>
 			</footer>
-
-			<footer id="copyright">
+		</div>
+		<div id="copyright-container">
+			<footer id="copyright" <?php if( get_theme_mod('social-copyright') != '' ) { ?>class="has-social"<?php } ?>>
+				<?php if( get_theme_mod('social-copyright') != '') { ?><div class="small-12 large-9"><?php } ?>
 				<?php if( get_theme_mod('copyright')): ?>
 					<p>&copy; <?php echo date('Y'); ?> <?php echo get_theme_mod('copyright','default'); ?></p>
 				<?php else: ?>
 					<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
 				<?php endif; ?>
+				<?php if( get_theme_mod('social-copyright') != '' ) { ?></div><div class="small-12 large-3"><?php echo do_shortcode('[bs_social_urls]');?></div><?php } ?>
 			</footer>
 		</div>
 		<div id="back-top">

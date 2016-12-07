@@ -1,5 +1,5 @@
 			<ul class="social-media-wrapper">
-				<?php if( get_theme_mod('search-social-menu') != '') { ?>
+				<?php $search_position = get_theme_mod('search-position'); if( $search_position == 'search-social-menu' ) { ?>
 				<li class="inline-social-search-wrapper">
 					<?php get_search_form(); ?>
 				</li>
@@ -12,6 +12,7 @@
 				<?php if( get_theme_mod('youtube')): ?><li class="youtube"><a href="<?php echo get_theme_mod('youtube','default'); ?>" target="_blank"><i class="fa fa-youtube-play"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('pinterest')): ?><li class="pinterest"><a href="<?php echo get_theme_mod('pinterest','default'); ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('vimeo')): ?><li class="vimeo"><a href="<?php echo get_theme_mod('vimeo','default'); ?>" target="_blank"><i class="fa fa-vimeo"></i></a></li><?php endif; ?>
+				<?php if( get_theme_mod('contact')): ?><li class="contact"><a href="<?php echo get_theme_mod('contact','default'); ?>"><i class="fa fa-envelope-o"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('rss')): ?><li class="rss"><a href="<?php echo get_theme_mod('rss','default'); ?>" target="_blank"><i class="fa fa-rss"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('custom')): ?><li class="custom-button"><a href="<?php echo get_theme_mod('custom','default'); ?>" target="_blank"><?php echo get_theme_mod('custom-text','default'); ?></a></li><?php endif; ?>
 			</ul>
