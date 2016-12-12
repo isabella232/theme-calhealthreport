@@ -252,17 +252,31 @@
 
 	});
 
-	// Shrink logo Classie script
+	// Sticky Header Classie script
 	function init() {
+		window.addEventListener('scroll', function(e){
+      var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+        stickPrep = jQuery('#masthead').height() + 15,
+        header = document.querySelector("body");
+      if (distanceY > stickPrep) {
+        classie.add(header,"sticky-prep");
+
+      } else {
+        if (classie.has(header,"sticky-prep")) {
+          classie.remove(header,"sticky-prep");
+        }
+      }
+  	});
     window.addEventListener('scroll', function(e){
       var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-        shrinkOn = jQuery('#masthead').height(),
+        stickOn = jQuery('#masthead').height() + jQuery('.top-bar-bottom').height(),
         header = document.querySelector("body");
-      if (distanceY > shrinkOn) {
-        classie.add(header,"shrink-header");
+      if (distanceY > stickOn) {
+        classie.add(header,"sticky-header");
+
       } else {
-        if (classie.has(header,"shrink-header")) {
-          classie.remove(header,"shrink-header");
+        if (classie.has(header,"sticky-header")) {
+          classie.remove(header,"sticky-header");
         }
       }
   	});

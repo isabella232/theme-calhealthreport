@@ -487,7 +487,7 @@ header#masthead {
   margin-right: auto;
   z-index: 99;
   padding: 1.25rem 0 .5rem !important;
-  background: url(http://127.0.0.1/brentstemplate/wp-content/uploads/2016/11/main-header-bg.jpg) no-repeat center bottom;
+  background: url(http://dev2.uptownstudios.net/bettyyee/wp-content/uploads/2016/11/main-header-bg.jpg) no-repeat center bottom;
   background-size: cover;
   transition: all 500ms ease-out;
 
@@ -513,8 +513,23 @@ header#masthead {
 .browsers-safari header#masthead .logo-wrapper img {
   width: 161px;
 }
-header#masthead.sticky-header {
-  position: fixed;
+@media only screen and (min-width: 39.9375rem) {
+  .sticky-prep .top-bar-bottom {
+    position: fixed;
+    width: 100%;
+    top: -100px;
+    transition: top .5s ease-out;
+  }
+  .admin-bar.sticky-prep .top-bar-bottom {
+    top: -132px;
+    transition: top .5s ease-out;
+  }
+  .sticky-header.sticky-prep .top-bar-bottom {
+    top: 0;
+  }
+  .admin-bar.sticky-header.sticky-prep .top-bar-bottom {
+    top: 32px;
+  }
 }
 .title-bar-title {
   width: calc(100% - 40px);
@@ -1742,49 +1757,6 @@ html .portals-wrapper {
 
 }
 
-h3.img-bg-heading,
-a.img-bg-heading {
-  position: relative;
-  font-size: 3.3125rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 5px #555;
-  width: 100%;
-  display: block;
-  padding: 60px 20px;
-  text-align: center;
-  color: #FFF !important;
-  line-height: 1.2;
-}
-h3.img-bg-heading-about,
-a.img-bg-heading-about {
-  background: url(http://127.0.0.1/chalkitup/wp-content/uploads/2016/10/about-the-festival.jpg) no-repeat center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-a.img-bg-heading:before {
-  content: '';
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-  position: absolute;
-  border: 4px solid #FFF;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  opacity: 0;
-  @include transition(all);
-}
-a.img-bg-heading:hover:before,
-a.img-bg-heading:focus:before {
-  width: calc(100% - 8px);
-  height: calc(100% - 8px);
-  opacity: 1;
-  top: 4px;
-  left: 4px;
-}
-
 div#instafeed {
   margin-left: -30px;
   margin-bottom: 20px;
@@ -1990,6 +1962,7 @@ body:not(.mobile) .home-hero-wrapper {
     width: 100%;
     max-width: 50rem;
     margin: 0 auto;
+    padding: 0 0.9375rem;
   }
   .page-intro-text-inner p {
     text-align: center;
