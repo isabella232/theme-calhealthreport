@@ -251,7 +251,7 @@
 	  });
 
 	});
-
+	<?php if( get_theme_mod( 'sticky-header' ) != '') { ?>
 	// Sticky Header Classie script
 	function init() {
 		window.addEventListener('scroll', function(e){
@@ -282,7 +282,7 @@
   	});
 	}
 	window.onload = init();
-
+	<?php } ?>
 	$('.bs-carousel').slick({
 	  dots: false,
 	  infinite: false,

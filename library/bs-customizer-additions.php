@@ -640,6 +640,28 @@ function newuptown_customize_register( $wp_customize ) {
       'description' => 'Check this box to enable breadcrumbs. Note: You MUST have Yoast SEO plugin installed and the breadcrumbs options checked in the Yoast Advanced settings.',
   ) ) );
 
+  // Add Blog Options Section
+  $wp_customize->add_section( 'blog-options' , array(
+    'title' => __( 'Blog Options', 'allonsy' ),
+    'priority' => 50,
+    'description' => __( 'Blog options, such as about the auther and tags', 'allonsy' )
+  ) );
+  // Disable About The Author
+  $wp_customize->add_setting( 'about-the-author' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'about-the-author', array(
+      'label' => __( 'Disable About the Author?', 'allonsy' ),
+      'section' => 'blog-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to disable the about the auther section on single blog posts.',
+  ) ) );
+  // Show Post Tags
+  $wp_customize->add_setting( 'show-post-tags' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show-post-tags', array(
+      'label' => __( 'Show the post tags?', 'allonsy' ),
+      'section' => 'blog-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to show post tags on single blog posts.',
+  ) ) );
 
 
   // Add Copyright Section

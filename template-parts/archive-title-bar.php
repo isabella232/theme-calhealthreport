@@ -1,4 +1,14 @@
-	<header id="featured-hero" role="banner" style="background-image: url('<?php bloginfo('url') ?>/wp-content/uploads/2016/06/tie-fighter-wing02.svg'); background-repeat: repeat; background-color: #a8c9e9; background-size: 290px;">
-		<h1 class="entry-title dark"><span class="entry-title-inner"><?php the_archive_title(); ?></span></h1>
-	</header>
+<?php
+
+	$default_image = get_theme_mod('default-title-bar-image');
+	$default_backup = get_stylesheet_directory_uri() . '/assets/img/title-bar-image.jpg';
+	if( $default_image === '' ) {
+		$default_image = $default_backup;
+	}
+	// If a feature image is set, get the id, so it can be injected as a css background property
+	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
+	$image = $image[0];
+?>
+	
+	<header id="featured-hero" role="banner" style="background: url('<?php echo $default_image; ?>') no-repeat center bottom; background-size: cover;"><h1 class="entry-title"><?php the_title(); ?></h1></header>
 	<div id="init-header-change"></div>

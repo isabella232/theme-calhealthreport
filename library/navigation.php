@@ -40,7 +40,7 @@ if ( ! function_exists( 'foundationpress_mobile_nav' ) ) {
 	function foundationpress_mobile_nav() {
 		wp_nav_menu( array(
 			'container'      => false,                         // Remove nav container
-			'menu'           => __( 'mobile-nav', 'foundationpress' ),
+			//'menu'           => __( 'mobile-nav', 'foundationpress' ),
 			'menu_class'     => 'vertical menu',
 			'theme_location' => 'mobile-nav',
 			'items_wrap'     => '<ul id="%1$s" class="%2$s" data-accordion-menu>%3$s</ul>',
@@ -54,7 +54,7 @@ if ( ! function_exists( 'foundationpress_mobile_nav' ) ) {
 /**
  * Add support for buttons in the top-bar menu:
  * 1) In WordPress admin, go to Apperance -> Menus.
- * 2) Click 'Screen Options' from the top panel and enable 'CSS CLasses' and 'Link Relationship (XFN)'
+ * 2) Click 'Screen Options' from the top panel and enable 'CSS Classes' and 'Link Relationship (XFN)'
  * 3) On your menu item, type 'has-form' in the CSS-classes field. Type 'button' in the XFN field
  * 4) Save Menu. Your menu item will now appear as a button in your top-menu
 */
@@ -101,7 +101,7 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 				echo '<li class="separator separator-home"> ' . $separator . ' </li>';
 			}
 
-			if ( is_single() ) {
+			if ( is_single() && ! is_attachment() ) {
 
 				// Single post (Only display the first category)
 				echo '<li class="item-cat item-cat-' . $category[0]->term_id . ' item-cat-' . $category[0]->category_nicename . '"><a class="bread-cat bread-cat-' . $category[0]->term_id . ' bread-cat-' . $category[0]->category_nicename . '" href="' . get_category_link($category[0]->term_id) . '" title="' . $category[0]->cat_name . '">' . $category[0]->cat_name . '</a></li>';
@@ -110,12 +110,12 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 				}
 				echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '" title="' . get_the_title() . '">' . get_the_title() . '</strong></li>';
 
-			} else if ( is_category() ) {
+			} elseif ( is_category() ) {
 
 				// Category page
 				echo '<li class="item-current item-cat-' . $category[0]->term_id . ' item-cat-' . $category[0]->category_nicename . '"><strong class="bread-current bread-cat-' . $category[0]->term_id . ' bread-cat-' . $category[0]->category_nicename . '">' . $category[0]->cat_name . '</strong></li>';
 
-			} else if ( is_page() ) {
+			} elseif ( is_page() ) {
 
 				// Standard page
 				if ( $post->post_parent ) {
@@ -147,7 +147,7 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 					echo '<li class="current item-' . $post->ID . '"> ' . get_the_title() . '</li>';
 
 				}
-			} else if ( is_tag() ) {
+			} elseif ( is_tag() ) {
 
 				// Tag page
 				// Get tag information
@@ -177,7 +177,7 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 				// Day display
 				echo '<li class="current item-' . get_the_time('j') . '">' . get_the_time('jS') . ' ' . get_the_time('M') . ' Archives</li>';
 
-			} else if ( is_month() ) {
+			} elseif ( is_month() ) {
 
 				// Month Archive
 				// Year link
@@ -189,12 +189,12 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 				// Month display
 				echo '<li class="item-month item-month-' . get_the_time('m') . '">' . get_the_time('M') . ' Archives</li>';
 
-			} else if ( is_year() ) {
+			} elseif ( is_year() ) {
 
 				// Display year archive
 				echo '<li class="current item-current-' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</li>';
 
-			} else if ( is_author() ) {
+			} elseif ( is_author() ) {
 
 				// Auhor archive
 				// Get the author information
@@ -204,12 +204,12 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 				// Display author name
 				echo '<li class="current item-current-' . $userdata->user_nicename . '">Author: ' . $userdata->display_name . '</li>';
 
-			} else if ( get_query_var('paged') ) {
+			} elseif ( get_query_var('paged') ) {
 
 				// Paginated archives
 				echo '<li class="current item-current-' . get_query_var('paged') . '">' . __('Page', 'foundationpress' ) . ' ' . get_query_var('paged') . '</li>';
 
-			} else if ( is_search() ) {
+			} elseif ( is_search() ) {
 
 				// Search results page
 				echo '<li class="current item-current-' . get_search_query() . '">Search results for: ' . get_search_query() . '</li>';
@@ -218,12 +218,12 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 
 				// 404 page
 				echo '<li>Error 404</li>';
-			}
+			} // End if().
 		} else {
 			if ( $showhome ) {
 				echo '<li class="item-home current">' . $home_title . '</li>';
 			}
-		}
+		} // End if().
 		echo '</ul>';
 	}
-}
+} // End if().

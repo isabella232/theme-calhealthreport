@@ -1,4 +1,11 @@
 <?php
+// Custom Excerpt Length
+function custom_excerpt_length( $length ) {
+	return 45;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+
 // Current Year Shortcode
 function bs_current_year() {
 	$year = date('Y');

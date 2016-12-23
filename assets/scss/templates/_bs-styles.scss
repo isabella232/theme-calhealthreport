@@ -35,10 +35,10 @@ $maintitle: 4.375rem !important;
 $maintitle639: 3.125rem !important;
 $h1: 2.8125rem !important;
 $h2: 2rem !important;
-$h3: 1.75rem !important;
-$h4: 1.5rem !important;
-$h5: 1.25rem !important;
-$h6: 1.125rem !important;
+$h3: 1.5rem !important;
+$h4: 1.25rem !important;
+$h5: 1.125rem !important;
+$h6: 1.0625rem !important;
 $bodycopy: 1.0625rem !important;
 
 @mixin transition($attr) {
@@ -66,6 +66,7 @@ $bodycopy: 1.0625rem !important;
   4a. Title Bar Styles
   4b. Gravity Forms Styles
   4c. Social Sharing Styles
+  4d. Single Blog Post Styles
 
 5. PORTFOLIO STYLES
 
@@ -129,7 +130,7 @@ a {
   font-weight: 700;
   font-family: $fontstack;
 }
-p {
+p, li, span {
   font-weight: 300;
   font-family: $fontstack;
 }
@@ -166,6 +167,17 @@ span.sub-title {
   display: block;
   font-size: 65%;
   margin: 10px 0;
+}
+.vcard abbr {
+  border: 0 !important;
+  cursor: text !important;
+}
+.vcard .type {
+  display: none;
+}
+.vcard .tel {
+  font-size: 1.375rem !important;
+  font-weight: 700;
 }
 .off-canvas-content #masthead {
   margin: 0 auto;
@@ -224,6 +236,17 @@ body.modal-active {
   background: $black;
   border: 2px solid $black;
   color: $white;
+}
+.bs-btn.bs-btn-red {
+  background: $red;
+  border: 2px solid $red;
+  color: $white !important;
+}
+.bs-btn.bs-btn-red:hover,
+.bs-btn.bs-btn-red:focus {
+  background: $purple;
+  border: 2px solid $purple;
+  color: $white !important;
 }
 .bs-btn.bs-btn-clear {
   background: none !important;
@@ -325,6 +348,9 @@ body.modal-active {
   ol.row .columns:last-child:not(:first-child) {
     float: left;
   }
+  p + ul, p + ol {
+    margin-top: -.9375rem;
+  }
 
 }
 .section-title {
@@ -413,28 +439,6 @@ ul.social-media-wrapper li a {
   opacity: 1;
   background: $black;
 }
-#back-top a:before {
-  content: '';
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-  position: absolute;
-  border: 2px solid #FFF;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  opacity: 0;
-  @include transition(all);
-}
-#back-top a:hover:before,
-#back-top a:focus:before {
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  opacity: 1;
-  top: 2px;
-  left: 2px;
-}
 .fourohfour-recent-posts ul {
   margin: 0;
   list-style: none;
@@ -514,20 +518,20 @@ header#masthead {
   width: 161px;
 }
 @media only screen and (min-width: 39.9375rem) {
-  .sticky-prep .top-bar-bottom {
+  body.sticky-prep #masthead.sticky-header .top-bar-bottom {
     position: fixed;
     width: 100%;
     top: -100px;
     transition: top .5s ease-out;
   }
-  .admin-bar.sticky-prep .top-bar-bottom {
+  body.admin-bar.sticky-prep #masthead.sticky-header .top-bar-bottom {
     top: -132px;
     transition: top .5s ease-out;
   }
-  .sticky-header.sticky-prep .top-bar-bottom {
+  body.sticky-header.sticky-prep #masthead.sticky-header .top-bar-bottom {
     top: 0;
   }
-  .admin-bar.sticky-header.sticky-prep .top-bar-bottom {
+  body.admin-bar.sticky-header.sticky-prep #masthead.sticky-header .top-bar-bottom {
     top: 32px;
   }
 }
@@ -1300,7 +1304,7 @@ header#masthead.header-option-two .top-bar.main-navigation {
       margin-top: 20px;
       margin-right: -10px;
       z-index: -1;
-      background: $purplealpha !important;
+      background: $orange !important;
       @include transition(all);
     }
     .menu .dropdown li a {
@@ -1385,9 +1389,9 @@ header#masthead.header-option-two .top-bar.main-navigation {
 
 
 /**** 3. HOME PAGE STYLES ****/
-.admin-bar header#masthead.sticky-header {
-  top: 32px;
-}
+// .admin-bar header#masthead.sticky-header {
+//   top: 32px;
+// }
 .home {
 
   div#page-full-width {
@@ -1419,10 +1423,11 @@ header#masthead.header-option-two .top-bar.main-navigation {
 }
 
 /* Home Blog Styles */
-.all-posts-wrapper .lcp_catlist article {
+.all-posts-wrapper .lcp_catlist article,
+body:not(.home) .all-posts-wrapper article .entry-content {
   display: flex;
   flex-direction: row;
-  margin-bottom: 3.75rem;
+  margin-bottom: 3.75rem !important;
   @media only screen and (max-width: 29.9375rem) {
     flex-direction: column;
   }
@@ -1443,6 +1448,9 @@ header#masthead.header-option-two .top-bar.main-navigation {
       width: 100%;
       padding: 0 0 1rem 0;
     }
+    figure {
+      margin: 0;
+    }
   }
   .article-right {
     width: calc(100% - 300px);
@@ -1453,11 +1461,13 @@ header#masthead.header-option-two .top-bar.main-navigation {
       width: 100%;
     }
   }
-  h4 a {
+  h4 a,
+  h3 a {
     color: $purple;
-    font-size: 1.875rem;
+    font-size: 1.875rem !important;
   }
-  .lcp_excerpt {
+  .lcp_excerpt,
+  .post-excerpt {
     font-size: 1.125rem;
   }
   p.post-meta {
@@ -1472,38 +1482,77 @@ header#masthead.header-option-two .top-bar.main-navigation {
     color: $burntorange;
   }
 }
+ul.lcp_paginator {
+  margin: 2.1875rem 0 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid #CCC;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  li {
+    margin: 0 .1875rem 0 0 !important;
+    width: 1.875rem;
+    height: 1.875rem;
+    padding: 0;
+    text-align: center;
+    line-height: 1.875rem;
+    border: 0;
+  }
+  li.lcp_currentpage {
+    background: $purple;
+    color: $white;
+    border: 1px solid $purple;
+    font-weight: 700 !important;
+  }
+  li a {
+    display: block;
+    line-height: 1.875rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    border: 1px solid $purple;
+  }
+  li a:hover,
+  li a:focus {
+    background: $purple;
+    color: $white !important;
+  }
+
+}
 
 /* Home Events Styles */
-.list-style-events-wrapper {
+.list-style-events-wrapper,
+body:not(.home) .entry-content .list-style-events-wrapper {
 
   h2 {
     display: none !important;
   }
   .list-style-events-single-event {
-    padding-left: 2.25rem;
-    position: relative;
-    margin-bottom: 2.25rem;
+    padding-left: 2.25rem !important;
+    position: relative !important;
+    margin-bottom: 2.25rem !important;
 
     + p {
-      display: none;
+      display: none !important;
     }
     &:before {
-      content: '\f073';
+      content: '\f073' !important;
       font-family: 'fontawesome' !important;
-      position: absolute;
-      top: -4px;
-      left: 0;
-      font-size: 1.5rem;
-      color: $purple;
+      position: absolute !important;
+      top: -4px !important;
+      left: 0 !important;
+      font-size: 1.5rem !important;
+      color: $purple !important;
     }
     h3 a {
-      color: $purple;
-      font-size: 1.5rem;
+      color: $purple !important;
+      font-size: 1.5rem !important;
     }
     span.events-meta {
-      font-size: 1rem;
-      color: $burntorange;
-      font-weight: 700;
+      font-size: 1rem !important;
+      color: $burntorange !important;
+      font-weight: 700 !important;
     }
 
   }
@@ -1565,18 +1614,54 @@ html .testimonials-wrapper {
 
 }
 
+/* Not Home Testimonials Styles */
+.not-home .testimonial_rotator_wrap {
+  margin: 0;
+  padding: 0;
+
+  .testimonial_rotator_slide {
+    margin-top: 0 !important;
+  }
+  .testimonial_rotator_description {
+    padding-left: 42px;
+    font-family: $fontstack;
+    font-size: 1.125rem;
+    position: relative;
+  }
+  .testimonial_rotator_description:before {
+    content: '“';
+    font-family: $fontstack;
+    font-size: 5rem !important;
+    position: absolute;
+    font-weight: 900;
+    color: $purple;
+    top: -10px;
+    left: 0;
+    line-height: 1;
+  }
+  .testimonial_rotator_author_info {
+    margin: 1rem 0 0 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    font-style: normal !important;
+  }
+}
+
 /* Contact Us Form Styles */
 body .gform_wrapper .top_label div.ginput_container {
   margin-top: 0 !important;
 }
-.main-contact-wrapper {
+.main-contact-wrapper,
+.main-volunteer-wrapper {
 
   p {
     text-align: center;
     font-size: 1.25rem;
     font-weight: 500;
   }
-
+  .gsection_description p {
+    text-align: left;
+  }
   .gform_wrapper {
     max-width: 60.625rem;
     margin: 0 auto;
@@ -1590,6 +1675,26 @@ body .gform_wrapper .top_label div.ginput_container {
     position: relative;
     margin: 0 0 1.5625rem !important;
   }
+  .gform_wrapper li.gfield.floatLabel .ginput_container.ginput_container_multiselect select {
+    padding: 28px 0 0 0;
+    max-height: 140px;
+  }
+  .gform_wrapper li.gfield.available-hours.floatLabel label {
+    font-weight: 700;
+    background: #FFF;
+    display: block;
+    width: calc(100% - 18px);
+    box-sizing: border-box !important;
+    padding: 3px 9px;
+    line-height: 1.3 !important;
+    left: 1px;
+    top: 1px;
+    border-bottom: 1px solid $orange;
+    border-radius: 6px 6px 0 0;
+    @media #{$break640} {
+      width: calc(100% - 2px);
+    }
+  }
   .gform_wrapper label.gfield_label {
     line-height: 1.2 !important;
     position: absolute;
@@ -1598,7 +1703,7 @@ body .gform_wrapper .top_label div.ginput_container {
     top: .25rem;
     text-transform: capitalize;
     font-family: $fontstack;
-    font-weight: 400;
+    font-weight: 700;
     @include transition(all);
   }
   .gform_wrapper label[data-attr="active"].gfield_label,
@@ -1607,7 +1712,16 @@ body .gform_wrapper .top_label div.ginput_container {
     font-size: 75% !important;
     opacity: .65;
   }
-  .gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), .gform_wrapper textarea {
+  .gform_wrapper.gform_validation_error label.gfield_label,
+  .gform_wrapper.gform_validation_error label.gfield_label {
+    position: relative;
+    left: 0;
+  }
+  .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.gfield_description {
+    padding-top: 0;
+  }
+  .gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), .gform_wrapper textarea,
+  .gform_wrapper li.gfield .ginput_container.ginput_container_multiselect select {
     padding: .65rem .5rem .5rem !important;
     border: 1px solid $orange;
     border-radius: 6px;
@@ -1642,6 +1756,13 @@ body .gform_wrapper .top_label div.ginput_container {
   }
 
 }
+@media only screen and (min-width: 641px) {
+  .main-contact-wrapper .gform_wrapper.gform_validation_error .top_label li.gfield.gfield_error.gf_left_half, .main-contact-wrapper .gform_wrapper.gform_validation_error .top_label li.gfield.gfield_error.gf_right_half,
+  .main-volunteer-wrapper .gform_wrapper.gform_validation_error .top_label li.gfield.gfield_error.gf_left_half, .main-volunteer-wrapper .gform_wrapper.gform_validation_error .top_label li.gfield.gfield_error.gf_right_half  {
+    max-width: 100%;
+    padding-right: 16px;
+  }
+}
 html .portals-wrapper {
   margin-top: -85px !important;
 }
@@ -1673,7 +1794,7 @@ html .portals-wrapper {
     z-index: 1;
     pointer-events: none;
     position: absolute;
-    border: 4px solid #FFF;
+    // border: 4px solid $red;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -1730,6 +1851,10 @@ html .portals-wrapper {
       bottom: 0;
       margin: 5px 0;
     }
+  }
+  .portal:hover h2,
+  .portal:focus h2 {
+    color: $red !important;
   }
 
 }
@@ -1899,6 +2024,11 @@ body:not(.mobile) .home-hero-wrapper {
   }
   div#page {
     margin-top: 2.25rem;
+
+    .main-content ul li,
+    .main-content ol li {
+      margin-bottom: 0.625rem;
+    }
   }
   div#page-full-width {
     margin-top: 2.25rem;
@@ -1912,6 +2042,10 @@ body:not(.mobile) .home-hero-wrapper {
       margin-left: auto;
       margin-right: auto;
       float: none;
+    }
+    .main-content ul li,
+    .main-content ol li {
+      margin-bottom: 0.625rem;
     }
 
   }
@@ -1941,13 +2075,20 @@ body:not(.mobile) .home-hero-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 0 !important;
   @media only screen and (max-width: 639px) {
     height: 12.5rem;
   }
 
   h1.entry-title {
     font-size: $maintitle;
-    padding-bottom: 0;
+    padding: 0 0.9375rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto !important;
+    color: #FFF;
+    text-shadow: 2px 1px 2px #000;
+    border-bottom: 0;
     @media only screen and (max-width: 639px) {
       font-size: $maintitle639;
     }
@@ -2004,7 +2145,12 @@ h1.entry-title {
 body:not(.home) .entry-content {
 
   a {
-    color: $orange;
+    color: $burntorange;
+    @include transition(color);
+  }
+  a:hover,
+  a:focus {
+    color: $purple;
   }
   p, span, li, a {
     font-size: $bodycopy;
@@ -2024,7 +2170,7 @@ div#four-o-four-wrapper {
 
 }
 div#page.archives-wrapper {
-  margin-top: 0;
+  //margin-top: 0;
 
   .entry-content, header {
     font-family: $fontstack;
@@ -2105,6 +2251,53 @@ html .portals-wrapper.sidebar-portals-wrapper {
     width: 100%;
     float: none;
   }
+}
+
+/* 4d. Single Blog Post Styles */
+@media only screen and (max-width: 47.9375em) {
+  #single-post {
+    article.main-content {
+      width: 100%;
+      float: none;
+    }
+    .sidebar {
+      width: 100%;
+      float: none;
+    }
+  }
+}
+.single-featured-image {
+  max-width: 300px;
+  width: 100%;
+  float: left;
+  margin: 0.3125rem 1rem 1rem 0;
+  @media #{$break480} {
+    max-width: 200px;
+  }
+  @media #{$break375} {
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+  }
+}
+
+/* 4e. Single Event Page Styles */
+.event-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  @media #{$break480} {
+    display: block;
+  }
+}
+.event-info-wrapper > div {
+  width: 50%;
+  @media #{$break480} {
+    width: 100%;
+  }
+}
+.event-map .em-location-map-container {
+  width: 100% !important;
+  margin-bottom: 2rem;
 }
 
 
@@ -2663,17 +2856,40 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
   }
   .gform_wrapper ul.gform_fields li.gfield {
     padding-right: 2rem;
+    position: relative;
   }
-  .gform_wrapper .top_label .gfield_label {
-    width: 1px;
-    height: 1px;
+  .gform_wrapper label.gfield_label {
+    line-height: 1.2 !important;
     position: absolute;
-    left: -9999px;
+    margin: 0 !important;
+    left: .5rem;
+    top: .25rem;
+    text-transform: capitalize;
+    font-family: $fontstack;
+    font-weight: 400;
+    color: $gray;
+    @include transition(all);
+  }
+  .gform_wrapper li#field_2_2 label.gfield_label {
+    top: 0;
+  }
+  .gform_wrapper label.gfield_label span.gfield_required {
+    color: $red !important;
+    font-weight: 700;
+  }
+  .gform_wrapper label[data-attr="active"].gfield_label,
+  .gform_wrapper label[data-attr="active"].gfield_label span.gfield_required,
+  .gform_wrapper li[data-attr="active"]#field_2_2 label.gfield_label {
+    top: .15rem !important;
+    font-size: 75% !important;
+    //opacity: .65;
   }
   .gform_wrapper input.large {
     border: 0;
     box-shadow: none;
     border-radius: 6px;
+    min-height: 42px;
+    padding: 12px 8px 2px;
   }
   .gform_wrapper .gform_footer {
     margin: 0 !important;
@@ -2687,6 +2903,7 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     font-family: $fontstack;
     font-weight: 700;
     line-height: 1 !important;
+    min-height: 42px;
     @include transition(all);
   }
   .gform_wrapper .gform_footer input.button:hover,
@@ -2696,11 +2913,27 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     background: $white;
     color: $burntorange;
   }
+  .gform_wrapper div.validation_error {
+    color: $white !important;
+    padding: .5rem 0 !important;
+    border-top-color: $white !important;
+    border-bottom-color: $white !important;
+  }
+  .gform_wrapper.gform_validation_error li#field_2_2 label.gfield_label {
+    top: .5rem;
+  }
+  .gform_wrapper.gform_validation_error li#field_2_2 label[data-attr="active"] {
+    top: .65rem !important;
+  }
+  .gform_wrapper .validation_message {
+    color: $white;
+    padding-top: 0 !important;
+  }
   a {
     @include transition(color);
   }
   .large-3:first-of-type {
-    width: 37.60%;
+    width: 36.60%;
     padding-right: 2.5rem;
   }
   .large-3:nth-of-type(2) {
@@ -2710,7 +2943,7 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     width: 27.35%;
   }
   .large-3:nth-of-type(4) {
-    width: 18.39%;
+    width: 19.39%;
   }
   h6 {
     font-size: 1.5rem !important;
@@ -2775,7 +3008,7 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     color: $white !important;
   }
   .vcard abbr {
-    border: 0;
+    border: 0 !important;
     cursor: text !important;
   }
   .vcard .type {
