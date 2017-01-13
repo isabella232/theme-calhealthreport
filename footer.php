@@ -256,7 +256,7 @@
 	function init() {
 		window.addEventListener('scroll', function(e){
       var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-        stickPrep = jQuery('#masthead').height() + 15,
+        stickPrep = jQuery('#masthead').height() + 35,
         header = document.querySelector("body");
       if (distanceY > stickPrep) {
         classie.add(header,"sticky-prep");

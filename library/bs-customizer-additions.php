@@ -71,6 +71,38 @@ function newuptown_customize_register( $wp_customize ) {
     'section' => 'default_colors',
     'settings' => 'link_hover_color',
   )));
+
+  /* Social Media Icon Color setting */
+  $wp_customize->add_setting('sm_color', array(
+    'default' => '#2199e8',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 11,
+  ));
+  /* Social Media Icon Color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'sm_color',array(
+    'label' => __('Social Media Icon Color', 'allonsy'),
+    'section' => 'default_colors',
+    'settings' => 'sm_color',
+  )));
+  /* Social Media Icon Hover Color setting */
+  $wp_customize->add_setting('sm_hover_color', array(
+    'default' => '#272e31',
+    'type' => 'theme_mod',
+    'transport' => 'postMessage',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'sanitize_hex_color',
+    'priority' => 13,
+  ));
+  /* Social Media Icon Hover Color control */
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'sm_hover_color',array(
+    'label' => __('Social Media Icon Hover Color', 'allonsy'),
+    'section' => 'default_colors',
+    'settings' => 'sm_hover_color',
+  )));
+
   /* H1 Color setting */
   $wp_customize->add_setting('heading1_color', array(
     'default' => '#d28441',
@@ -734,6 +766,30 @@ a {
 }
 a:hover, a:focus {
   color: <?php echo esc_attr(get_theme_mod('link_hover_color','#272e31')); ?>;
+}
+header#masthead ul.social-media-wrapper li a {
+  color: <?php echo esc_attr(get_theme_mod('sm_color','#2199e8')); ?>;
+  -webkit-transition: color .2s ease-out;
+  -moz-transition: color .2s ease-out;
+  -o-transition: color .2s ease-out;
+  transition: color .2s ease-out;
+}
+header#masthead ul.social-media-wrapper li a:hover,
+header#masthead ul.social-media-wrapper li a:focus {
+  color: <?php echo esc_attr(get_theme_mod('sm_hover_color','#272e31')); ?>;
+}
+header#masthead ul.social-media-wrapper li.custom-button a {
+  color: #FFF;
+  background: <?php echo esc_attr(get_theme_mod('sm_color','#2199e8')); ?>;
+  -webkit-transition: background .2s ease-out;
+  -moz-transition: background .2s ease-out;
+  -o-transition: background .2s ease-out;
+  transition: background .2s ease-out;
+}
+header#masthead ul.social-media-wrapper li.custom-button a:hover,
+header#masthead ul.social-media-wrapper li.custom-button a:focus {
+  color: #FFF;
+  background: <?php echo esc_attr(get_theme_mod('sm_hover_color','#272e31')); ?>;
 }
 h1 {
   color: <?php echo esc_attr(get_theme_mod('heading1_color','#d28441')); ?>;
