@@ -743,7 +743,7 @@ add_action( 'customize_register', 'newuptown_customize_register' );
 
 function bs_customize_css() { ?>
 <style type="text/css" id="bs-customizer-css">
-body:before {
+header#masthead {
   background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
 }
 @media only screen and (max-width: 39.9375rem) {
@@ -841,6 +841,42 @@ nav.off-canvas .menu li a:focus {
   background: <?php echo esc_attr(get_theme_mod('main_nav_sub_bg_color','#e1e1e1')); ?>;
   border-top: 6px solid <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
+ul.dropdown.menu.desktop-menu > li.menu-item-has-children > a:before {
+  color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+nav.off-canvas > .menu > li > a:after {
+  border-top-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+.menu-icon::after {
+  background: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+  box-shadow: 0 7px 0 <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>, 0 14px 0 <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+.menu-icon:hover::after {
+  background: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+  box-shadow: 0 7px 0 <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>, 0 14px 0 <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+.highlight-bg {
+  background-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+.highlight-text {
+  color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+/* btc = border top color */
+.highlight-btc {
+  border-top-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+/* bbc = border bottom color */
+.highlight-bbc {
+  border-bottom-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+/* blc = border left color */
+.highlight-blc {
+  border-left-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
+/* brc = border right color */
+.highlight-brc {
+  border-right-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
+}
 .header-option-one .top-bar .top-bar-right .menu .dropdown li a,
 .header-option-two .top-bar .top-bar-bottom .menu .dropdown li a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_color','#d28441')); ?>;
@@ -895,7 +931,6 @@ nav.off-canvas .menu li.active > a {
 #copyright a:hover, #copyright a:focus {
   color: <?php echo esc_attr(get_theme_mod('copyright_link_hover_color','#FFFFFF')); ?>;
 }
-copyright_text_color
 </style>
 <?php }
 add_action( 'wp_head', 'bs_customize_css', 999);
