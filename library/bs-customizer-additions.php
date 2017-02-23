@@ -217,14 +217,14 @@ function newuptown_customize_register( $wp_customize ) {
     'sanitize_callback' => 'sanitize_hex_color',
     'priority' => 100,
   ));
-  /* highlight color control */
+  /* Highlight Color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'highlight_color',array(
     'label' => __('Highlight Color', 'allonsy'),
     'section' => 'default_colors',
     'settings' => 'highlight_color',
   )));
 
-  /* header colors section */
+  /* Header Colors section */
   $wp_customize->add_section('header_colors', array(
     'title' => __('Header Colors', 'allonsy'),
     'description' => __('Change the colors in the header, such as header background and main nav colors.', 'allonsy'),
@@ -477,7 +477,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Copyright Link color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_link_color',array(
-    'label' => __('Copyright Text Color', 'allonsy'),
+    'label' => __('Copyright Link Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'copyright_link_color',
   )));
@@ -492,7 +492,7 @@ function newuptown_customize_register( $wp_customize ) {
   ));
   /* Copyright Link Hover color control */
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize,'copyright_link_hover_color',array(
-    'label' => __('Copyright Text Color', 'allonsy'),
+    'label' => __('Copyright Link Hover Color', 'allonsy'),
     'section' => 'footer_colors',
     'settings' => 'copyright_link_hover_color',
   )));
@@ -614,6 +614,24 @@ function newuptown_customize_register( $wp_customize ) {
       'section' => 'header-options',
       'type' => 'checkbox',
       'description' => 'Check this box to enable the sticky header',
+  ) ) );
+
+  // Hide Social Icons in the Header
+  $wp_customize->add_setting( 'hide_header_social' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'hide_header_social', array(
+      'label' => __( 'Hide Social Icons In Header?', 'allonsy' ),
+      'section' => 'header-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to hide social icons in the header',
+  ) ) );
+
+  // Show Alt Nav in the Header
+  $wp_customize->add_setting( 'show_alt_nav' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'show_alt_nav', array(
+      'label' => __( 'Show Alt Nav In Header Top Bar?', 'allonsy' ),
+      'section' => 'header-options',
+      'type' => 'checkbox',
+      'description' => 'Check this box to show the alt nav in the header',
   ) ) );
 
   // Search Position in Header
@@ -881,12 +899,12 @@ nav.off-canvas > .menu > li > a:after {
 .header-option-two .top-bar .top-bar-bottom .menu .dropdown li a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_color','#d28441')); ?>;
 }
-.header-option-one .top-bar .top-bar-right .menu .dropdown li:hover a,
-.header-option-one .top-bar .top-bar-right .menu .dropdown li:focus a,
-.header-option-one .top-bar .top-bar-right .menu .dropdown li.active a,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:hover a,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:focus a,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown li.active a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li:hover > a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li:focus > a,
+.header-option-one .top-bar .top-bar-right .menu .dropdown li.active > a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:hover > a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li:focus > a,
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li.active > a,
 nav.off-canvas .menu li.active > a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_color','#FFFFFF')); ?> !important;
   background: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_bg_color','#d28441')); ?> !important;
@@ -916,7 +934,7 @@ nav.off-canvas .menu li.active > a {
 #footer-container #footer a:focus,
 #footer-container #footer ul.menu li a:hover,
 #footer-container #footer ul.menu li a:focus,
-#footer-container #footer ul.menu li.active a {
+#footer-container #footer ul.menu li.active > a {
   color: <?php echo esc_attr(get_theme_mod('footer_widget_a_hover_color','#d28441')); ?>;
 }
 #copyright-container {

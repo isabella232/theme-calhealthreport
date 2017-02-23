@@ -1,0 +1,48 @@
+$fontstack: 'museo-sans', 'Open Sans', Arial, Helvetica, sans-serif;
+$darkgreen: #025250;
+$green: #006564;
+$greenalpha: rgba(0, 101, 100, .8);
+$ltgreen: #60cac7;
+$red: #a21e1e;
+$orange: #fdba44;
+$blue: #3071bd;
+$white: #FFFFFF;
+$black: #000000;
+$gray: #524f49;
+$ltgray: #f2f2f2;
+
+// Breakpoint variables
+$break1600: "only screen and (max-width: 100em)";
+$break1200: "only screen and (max-width: 75em)";
+$break1024: "only screen and (max-width: 64em)";
+$break1024to640: "only screen and (max-width: 64em) and (min-width: 40em)";
+$break972: "only screen and (max-width: 60.75em)";
+$break951: "only screen and (max-width: 59.4375em)";
+$break951to601: "only screen and (max-width: 59.4375em) and (min-width: 37.5625em)";
+$break800: "only screen and (max-width: 50em)";
+$break767: "only screen and (max-width: 47.9375em)";
+$break640: "only screen and (max-width: 40em)";
+$break639: "only screen and (max-width: 39.9375em)";
+$break600: "only screen and (max-width: 37.5em)";
+$break480: "only screen and (max-width: 30em)";
+$break375: "only screen and (max-width: 23.4375em)";
+
+// Font size variables
+$cta: 2.75rem !important;
+$cta639: 1.875rem !important;
+$maintitle: 4.375rem !important;
+$maintitle639: 3.125rem !important;
+$h1: 3rem !important;
+$h2: 3rem !important;
+$h3: 1.5rem !important;
+$h4: 1.25rem !important;
+$h5: 1.125rem !important;
+$h6: 1.0625rem !important;
+$bodycopy: 1rem !important;
+
+@mixin transition($attr) {
+  -webkit-transition: $attr .2s ease-out;
+     -moz-transition: $attr .2s ease-out;
+      -ms-transition: $attr .2s ease-out;
+          transition: $attr .2s ease-out;
+}
