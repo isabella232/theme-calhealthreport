@@ -21,8 +21,12 @@
 						<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
 					</div>
 					<div class="top-bar-right">
+						<?php if( $alt_nav != '' ): foundationpress_top_bar_alt(); endif; ?>
+
+						<?php if ( get_theme_mod( 'wpt_mobile_menu_layout' ) == 'topbar' ) : ?>
+							<?php get_template_part( 'template-parts/mobile-top-bar' ); ?>
+						<?php endif; ?>
 						<?php if( get_theme_mod('hide_header_social') == '' ): ?>
-						<?php if( get_theme_mod('contact') || get_theme_mod('facebook') || get_theme_mod('twitter') || get_theme_mod('linkedin') || get_theme_mod('instagram') || get_theme_mod('youtube') || get_theme_mod('pinterest') || get_theme_mod('rss') || get_theme_mod('vimeo')) { ?>
 						<div class="top-bar-social">
 							<?php get_template_part('template-parts/social-media'); ?>
 							<?php if( $search_position == 'search-above-menu' ) { ?>
@@ -31,7 +35,6 @@
 							</div>
 							<?php } ?>
 						</div>
-						<?php } ?>
 						<?php endif; ?>
 						<?php if( $hide_social != '' && $search_position == 'search-above-menu' ): ?>
 							<div class="top-bar-social">
@@ -39,12 +42,6 @@
 									<?php get_search_form(); ?>
 								</div>
 							</div>
-						<?php endif; ?>
-
-						<?php if( $alt_nav != '' ): foundationpress_top_bar_alt(); endif; ?>
-
-						<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'topbar' ) : ?>
-							<?php get_template_part( 'template-parts/mobile-top-bar' ); ?>
 						<?php endif; ?>
 					</div>
 				</div>
