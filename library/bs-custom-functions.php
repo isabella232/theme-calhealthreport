@@ -189,3 +189,163 @@ function bs_services_loop( $atts ) {
       <?php $myvariable = ob_get_clean(); return $myvariable;
     endif;
 }
+
+
+// Custom pagination
+function custom_pagination($numpages = '', $pagerange = '', $paged='') {
+  if (empty($pagerange)) { $pagerange = 2; }
+
+  global $paged;
+  if (empty($paged)) { $paged = 1; }
+  if ($numpages == '') { global $wp_query; $numpages = $wp_query->max_num_pages;
+  	if(!$numpages) { $numpages = 1; }
+  }
+
+  $pagination_args = array(
+    'base'            => get_pagenum_link(1) . '%_%',
+    //'format'          => '/page=%#%',
+    'total'           => $numpages,
+    'current'         => $paged,
+    'show_all'        => false,
+    'end_size'        => 1,
+    'mid_size'        => $pagerange,
+    'prev_next'       => true,
+    'prev_text'       => __('&laquo;'),
+    'next_text'       => __('&raquo;'),
+    'add_args'        => false,
+    'add_fragment'    => ''
+  );
+
+  $paginate_links = paginate_links($pagination_args);
+
+  if ($paginate_links) {
+    echo "<nav class='custom-pagination'>";
+      echo "<span class='page-numbers page-num'>Page " . $paged . " of " . $numpages . "</span><span class='pipe-separator'>|</span>";
+      echo $paginate_links;
+    echo "</nav>";
+  }
+
+}
+
+// Add new image size for blog featured image
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'bs_blog', 800, 500, true ); //(cropped)
+}
+// Custom Loop Shortcode
+add_shortcode( 'blog_loop', 'bs_blog_loop' );
+function bs_blog_loop( $atts ) {
+    $args = shortcode_atts( array(
+			'ppp' => '',
+			'cat' => '0',
+			'order_by' => 'date',
+			'order' => 'DESC',
+			'show_meta' => '1',
+			'show_date' => '1',
+			'show_author' => '0',
+			'show_avatar' => '0',
+			'show_cats' => '1',
+			'show_comments' => '0',
+			'show_excerpt' => '1',
+			'show_readmore' => '1',
+			'show_thumbnail' => '1',
+			'default_thumbnail' => '',
+			'thumbnail_size' => 'bs_blog',
+			'pagination' => '0',
+    ), $atts, 'bs_blog_loop' );
+    ob_start();
+
+		if ( get_query_var('paged') ) {
+			$paged = get_query_var('paged');
+		} elseif ( get_query_var('page') ) {
+			$paged = get_query_var('page');
+		} else {
+		  $paged = 1;
+		}
+
+		// $temp_query = $wp_query;
+		// $wp_query   = NULL;
+		// $wp_query   = $bs_query;
+
+		$custom_query_args = array(
+			'post_type' => 'post',
+			'status' => 'published',
+			'orderby' => $args['order_by'],
+			'order' => $args['order'],
+      'posts_per_page' => $args['ppp'],
+			'cat' => $args['cat'],
+			//'offset' => $args['offset'],
+			'paged' => $paged,
+			'page' => $paged,
+		);
+    $bs_query = new WP_Query( $custom_query_args );
+
+    ?>
+			<section class="bs-blog-loop temp-blog-wrapper">
+			<?php if ( $bs_query->have_posts() ) : while ( $bs_query->have_posts() ) : $bs_query->the_post(); ?>
+
+			<?php
+				global $post;
+				$image_size = $args['thumbnail_size'];
+			?>
+
+			<article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
+				<?php if($args['show_thumbnail'] == '1' && has_post_thumbnail()) { ?>
+					<div class="blog-featured-image">
+						<figure><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail( $image_size ); ?></a></figure>
+					</div>
+				<?php } ?>
+				<?php if($args['show_thumbnail'] == '1' && $args['default_thumbnail'] != '' && !has_post_thumbnail()) { ?>
+					<div class="blog-featured-image default-featured-image">
+						<figure><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img src="<?php echo $args['default_thumbnail']; ?>" alt="Blog post featured image" /></a></figure>
+					</div>
+				<?php } ?>
+					<div class="entry-content">
+						<div class="bs-post-title">
+							<h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+						</div>
+
+						<?php if($args['show_meta'] == '1') { ?>
+						<div class="blog-meta">
+							<?php if($args['show_date'] == '1') { ?>
+								<p class="bs-post-date"><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo get_the_date(); ?></p>
+							<?php } ?>
+
+							<?php if($args['show_author'] == '1') { ?>
+								<p class="bs-post-byline">
+									<?php if($args['show_avatar'] == '1') { ?><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span> <?php } else { ?><i class="fa fa-user" aria-hidden="true"></i> <?php } ?><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title=""><?php the_author_meta( 'display_name' ); ?></a></p>
+							<?php } ?>
+
+							<?php if($args['show_cats'] == '1') { ?>
+								<p class="bs-post-cats"><i class="fa fa-folder-open" aria-hidden="true"></i> <?php the_category(','); ?></p>
+							<?php } ?>
+
+							<?php if($args['show_comments'] == '1') { ?>
+								<p class="bs-post-comments"><i class="fa fa-comments" aria-hidden="true"></i> <a href="<?php comments_link(); ?>" title="Join the discussion"><?php comments_number( 'no comments', '1 comment', '% comments' ); ?></a></p>
+							<?php } ?>
+						</div>
+						<?php } ?>
+
+						<?php if($args['show_excerpt'] == '1') { ?>
+						<div class="bs-post-excerpt">
+							<?php the_excerpt(); ?>
+						</div>
+						<?php } ?>
+
+						<?php if($args['show_readmore'] == '1') { ?>
+						<div class="blog-footer">
+							<a class="blog-read-more" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More...</a>
+						</div>
+						<?php } ?>
+					</div>
+				</article>
+			<?php endwhile; endif; wp_reset_postdata(); ?>
+			<?php if ( $args['pagination'] == '1' ) {
+				custom_pagination($bs_query->max_num_pages,"",$paged);
+			}
+
+			// $wp_query = NULL;
+			// $wp_query = $temp_query;
+			$myvariable = ob_get_clean(); return $myvariable; ?>
+			</section>
+	<?php
+}

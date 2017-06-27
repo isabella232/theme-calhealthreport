@@ -17,7 +17,7 @@ get_header(); ?>
 
 		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
 			<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
-	      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul>'); }
+	      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
 	    } ?>
 	    <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
 	      <h1 class="entry-title"><?php _e( 'Error 404: Page Not Found', 'allonsy' ); ?></h1>

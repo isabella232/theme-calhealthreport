@@ -18,7 +18,7 @@ $loop = new WP_Query( $args );
 <?php do_action( 'foundationpress_before_content' ); ?>
   <article <?php post_class('main-content lazy-isotope-wrapper') ?> id="post-<?php the_ID(); ?>">
     <?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
-      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul>'); }
+      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
     } ?>
     <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
       <h1 class="entry-title"><?php the_title(); ?></h1>
