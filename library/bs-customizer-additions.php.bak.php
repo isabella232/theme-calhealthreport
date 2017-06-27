@@ -570,14 +570,6 @@ function newuptown_customize_register( $wp_customize ) {
       'settings' => 'vimeo',
   ) ) );
 
-  // Add Feedly Setting
-  $wp_customize->add_setting( 'feedly' , array( 'default' => '' ));
-  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'feedly', array(
-      'label' => __( 'Feedly', 'allonsy' ),
-      'section' => 'social-media',
-      'settings' => 'feedly',
-  ) ) );
-
   // Add Contact Setting
   $wp_customize->add_setting( 'contact' , array( 'default' => '' ));
   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'contact', array(
@@ -664,8 +656,7 @@ function newuptown_customize_register( $wp_customize ) {
       'type' => 'radio',
       'choices' => array(
         'menu-right' => 'Logo Left, Menu Right',
-        'menu-bottom' => 'Logo Left, Menu Bottom',
-        'menu-center' => 'Logo Center, Menu Bottom & Center'
+        'menu-bottom' => 'Logo Left, Menu Bottom'
       ),
   ) ) );
 
@@ -781,7 +772,7 @@ header#masthead {
     background: <?php echo esc_attr(get_theme_mod('header_color','#f4f4f0')); ?>;
   }
 }
-#main-container p, #main-container li, #main-container span {
+p {
   color: <?php echo esc_attr(get_theme_mod('paragraph_color','#272e31')); ?>;
 }
 a {
@@ -794,8 +785,7 @@ a {
 a:hover, a:focus {
   color: <?php echo esc_attr(get_theme_mod('link_hover_color','#272e31')); ?>;
 }
-header#masthead ul.social-media-wrapper li a,
-nav.off-canvas ul.social-media-wrapper li a {
+header#masthead ul.social-media-wrapper li a {
   color: <?php echo esc_attr(get_theme_mod('sm_color','#2199e8')); ?>;
   -webkit-transition: color .2s ease-out;
   -moz-transition: color .2s ease-out;
@@ -803,9 +793,7 @@ nav.off-canvas ul.social-media-wrapper li a {
   transition: color .2s ease-out;
 }
 header#masthead ul.social-media-wrapper li a:hover,
-header#masthead ul.social-media-wrapper li a:focus,
-nav.off-canvas ul.social-media-wrapper li a:hover,
-nav.off-canvas ul.social-media-wrapper li a:focus {
+header#masthead ul.social-media-wrapper li a:focus {
   color: <?php echo esc_attr(get_theme_mod('sm_hover_color','#272e31')); ?>;
 }
 header#masthead ul.social-media-wrapper li.custom-button a {
@@ -843,13 +831,11 @@ h1.entry-title {
   color: <?php echo esc_attr(get_theme_mod('pagetitle_color','#FFFFFF')); ?>;
 }
 .header-option-one .top-bar .top-bar-right,
-.header-option-two .top-bar .top-bar-bottom,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu {
+.header-option-two .top-bar .top-bar-bottom {
   background: <?php echo esc_attr(get_theme_mod('main_nav_bar_bg_color','#FFFFFF')); ?>;
 }
 .header-option-one .top-bar .top-bar-right .menu > li > a,
 .header-option-two .top-bar .top-bar-bottom .menu > li > a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu > li > a,
 nav.off-canvas > .menu > li > a,
 nav.off-canvas .submenu li a  {
   color: <?php echo esc_attr(get_theme_mod('main_nav_color','#272e31')); ?>;
@@ -864,22 +850,14 @@ nav.off-canvas .submenu li a  {
 .header-option-two .top-bar .top-bar-bottom .menu > li > a:hover,
 .header-option-two .top-bar .top-bar-bottom .menu > li > a:focus,
 .header-option-two .top-bar .top-bar-bottom > .menu > .active > a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu > li > a:hover,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu > li > a:focus,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu > .menu > .active > a,
 nav.off-canvas .menu li a:hover,
 nav.off-canvas .menu li a:focus {
   color: <?php echo esc_attr(get_theme_mod('main_nav_hover_color','#d28441')); ?>;
 }
 .header-option-one .top-bar .top-bar-right .menu .dropdown,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown {
-  border-top: 6px solid <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
-}
-.header-option-one .top-bar .top-bar-right .menu .dropdown li,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown li,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown li {
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown {
   background: <?php echo esc_attr(get_theme_mod('main_nav_sub_bg_color','#e1e1e1')); ?>;
+  border-top: 6px solid <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
 ul.dropdown.menu.desktop-menu > li.menu-item-has-children > a:before {
   color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
@@ -918,8 +896,7 @@ nav.off-canvas > .menu > li > a:after {
   border-right-color: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
 .header-option-one .top-bar .top-bar-right .menu .dropdown li a,
-.header-option-two .top-bar .top-bar-bottom .menu .dropdown li a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown li a {
+.header-option-two .top-bar .top-bar-bottom .menu .dropdown li a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_color','#d28441')); ?>;
 }
 .header-option-one .top-bar .top-bar-right .menu .dropdown li:hover > a,
@@ -928,16 +905,12 @@ nav.off-canvas > .menu > li > a:after {
 .header-option-two .top-bar .top-bar-bottom .menu .dropdown li:hover > a,
 .header-option-two .top-bar .top-bar-bottom .menu .dropdown li:focus > a,
 .header-option-two .top-bar .top-bar-bottom .menu .dropdown li.active > a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown li:hover > a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown li:focus > a,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu .dropdown li.active > a,
 nav.off-canvas .menu li.active > a {
   color: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_color','#FFFFFF')); ?> !important;
   background: <?php echo esc_attr(get_theme_mod('main_nav_sub_li_hover_bg_color','#d28441')); ?> !important;
 }
 .header-option-one .top-bar .top-bar-right .menu > li:after,
-.header-option-two .top-bar .top-bar-bottom .menu > li:after,
-.header-option-three .top-bar .top-bar-bottom .top-bar-menu .menu > li:after {
+.header-option-bottom .top-bar .top-bar-bottom .menu > li:after {
   background: <?php echo esc_attr(get_theme_mod('highlight_color','#d28441')); ?>;
 }
 .above-menu-search-wrapper form#searchform :after,
