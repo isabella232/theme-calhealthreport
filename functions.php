@@ -56,6 +56,10 @@ require_once( 'library/bs-custom-functions.php' );
 /** Customizer Additions */
 require_once( 'library/bs-customizer-additions.php' );
 
+/** Required and Recommended Plugins */
+require_once( 'library/class-tgm-plugin-activation.php' );
+require_once( 'library/bs-plugin-activation.php' );
+
 /** If your site requires protocol relative url's for theme assets, uncomment the line below */
 // require_once( 'library/protocol-relative-theme-assets.php' );
 

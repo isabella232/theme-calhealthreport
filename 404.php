@@ -9,13 +9,13 @@
 get_header(); ?>
 
 <?php if( get_theme_mod('internal-title-bar') != '' ) {
-  get_template_part( 'template-parts/title-bar' );
+  get_template_part( 'template-parts/404-title-bar' );
 } ?>
 
 <div id="four-o-four-wrapper" class="row">
 	<div class="small-12 large-8 columns" role="main">
 
-		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
+		<section <?php post_class() ?> id="post-<?php the_ID(); ?>">
 			<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
 	      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
 	    } ?>
@@ -60,7 +60,7 @@ get_header(); ?>
 						</ul>
 					</div>
 			</div>
-		</article>
+		</section>
 	</div>
 	<?php get_sidebar(); ?>
 </div>

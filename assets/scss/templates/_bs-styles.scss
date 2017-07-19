@@ -457,8 +457,7 @@ html .testimonials-wrapper {
 body .gform_wrapper .top_label div.ginput_container {
   margin-top: 0 !important;
 }
-.main-contact-wrapper,
-.main-volunteer-wrapper {
+.main-contact-wrapper {
 
   p {
     text-align: center;
@@ -471,8 +470,11 @@ body .gform_wrapper .top_label div.ginput_container {
   .gform_wrapper {
     max-width: 60.625rem;
     margin: 0 auto;
+    @media only screen and (min-width: 641px) {
+      width: calc(100% + 16px);
+    }
   }
-  .gform_wrapper.gf_browser_chrome .gform_body {
+  .gform_wrapper .gform_body {
     @media only screen and (max-width: 641px) {
       width: 100% !important;
     }
@@ -481,25 +483,10 @@ body .gform_wrapper .top_label div.ginput_container {
     position: relative;
     margin: 0 0 1.5625rem !important;
   }
-  .gform_wrapper li.gfield.floatLabel .ginput_container.ginput_container_multiselect select {
+  .gform_wrapper li.gfield.floatLabel .ginput_container.ginput_container_multiselect select,
+  .gform_wrapper li.gfield.floatLabel .ginput_container.ginput_container_select select {
     padding: 28px 0 0 0;
     max-height: 140px;
-  }
-  .gform_wrapper li.gfield.available-hours.floatLabel label {
-    font-weight: 700;
-    background: #FFF;
-    display: block;
-    width: calc(100% - 18px);
-    box-sizing: border-box !important;
-    padding: 3px 9px;
-    line-height: 1.3 !important;
-    left: 1px;
-    top: 1px;
-    border-bottom: 1px solid $green;
-    border-radius: 6px 6px 0 0;
-    @media #{$break640} {
-      width: calc(100% - 2px);
-    }
   }
   .gform_wrapper label.gfield_label {
     line-height: 1.2 !important;
@@ -529,36 +516,60 @@ body .gform_wrapper .top_label div.ginput_container {
   .gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), .gform_wrapper textarea,
   .gform_wrapper li.gfield .ginput_container.ginput_container_multiselect select {
     padding: .65rem .5rem .5rem !important;
-    border: 1px solid $green;
-    border-radius: 6px;
+    border: 1px solid $red;
+    border-radius: 0;
     box-shadow: none;
     background: $white;
-    min-height: 3.25rem !important;
+    min-height: 3.5rem !important;
     margin: 0 !important;
   }
   .gform_wrapper textarea {
     padding: .875rem .5rem .5rem !important;
   }
+  .gform_wrapper .field_sublabel_below .ginput_complex.ginput_container label,
+  .gform_wrapper .field_sublabel_below div[class*=gfield_time_].ginput_container label {
+    margin: 0 0 -14px 1px;
+    line-height: 1;
+  }
+  .gform_wrapper .field_sublabel_below .ginput_complex.ginput_container {
+
+    span.ginput_left {
+      @media only screen and (max-width: 641px) and (min-width: 641px) {
+        display: inline-block;
+      }
+      label {
+        @media #{$break640} {
+          margin: 0 0 -3px 1px;
+        }
+      }
+    }
+    span.ginput_right {
+      @media only screen and (max-width: 641px) and (min-width: 641px) {
+        display: inline-block;
+      }
+    }
+  }
   .gform_wrapper .gform_footer {
     margin: 0 0 2rem 0;
     padding: 0;
-    text-align: right;
+    text-align: left;
   }
   .gform_wrapper .gform_footer input.button, .gform_wrapper .gform_footer input[type=submit], .gform_wrapper .gform_page_footer input.button, .gform_wrapper .gform_page_footer input[type=submit] {
     background: $red;
     font-weight: 700;
     font-family: $fontstack;
+    font-size: 1.5rem !important;
+    text-transform: uppercase;
     margin: 0 !important;
     padding: 0 1.25rem !important;
     line-height: 52px !important;
     max-height: 52px !important;
-    font-size: 1.125rem !important;
-    border-radius: 6px;
+    border-radius: 0;
     @include transition(all);
   }
   .gform_wrapper .gform_footer input.button:hover, .gform_wrapper .gform_footer input[type=submit]:hover, .gform_wrapper .gform_page_footer input.button:hover, .gform_wrapper .gform_page_footer input[type=submit]:hover,
   .gform_wrapper .gform_footer input.button:focus, .gform_wrapper .gform_footer input[type=submit]:focus, .gform_wrapper .gform_page_footer input.button:focus, .gform_wrapper .gform_page_footer input[type=submit]:focus {
-    background: $green;
+    background: $black;
   }
 
 }
@@ -569,6 +580,7 @@ body .gform_wrapper .top_label div.ginput_container {
     padding-right: 16px;
   }
 }
+
 .portals-inner-wrapper {
 
   .portal-row {

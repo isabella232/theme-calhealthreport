@@ -1,6 +1,9 @@
 <?php
 $search_position = get_theme_mod('search-position');
 $header_layout = get_theme_mod('header-layout');
+$loading_animation = get_theme_mod('loading-animation');
+$loading_animation_img = get_theme_mod('loading-animation-image');
+$default_loading_animation_img = get_stylesheet_directory_uri() . '/assets/img/logo.svg';
 /**
  * The template for displaying the header
  *
@@ -17,15 +20,15 @@ $header_layout = get_theme_mod('header-layout');
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-		<?php if( get_theme_mod('meta_color')): ?>
+		<meta name="format-detection" content="telephone=no">
+		<?php if( get_theme_mod('highlight_color')): ?>
 		<meta name="theme-color" content="<?php echo esc_attr(get_theme_mod('highlight_color','default')); ?>">
 		<?php endif; ?>
 		<?php wp_head(); ?>
-		<link rel="icon" sizes="192x192" href="<?php bloginfo('url'); ?>/wp-content/uploads/2016/08/favicon.png">
 		<?php if( get_theme_mod('analytics')): ?><?php echo get_theme_mod('analytics','default'); ?><?php endif; ?>
 	</head>
 	<body <?php body_class(); ?>>
-		<div id="preloader"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.svg" width="600" class="preloader-logo"></div>
+		<?php if( $loading_animation != '' ) : ?><div id="preloader"><img src="<?php if( $loading_animation_img != '' ) { echo $loading_animation_img; } else { echo $default_loading_animation_img; }?>" width="600" class="preloader-logo"></div><?php endif; ?>
 		<script>window.fbAsyncInit = function() { FB.init({ appId: '317466291976025', xfbml: true, version: 'v2.5' }); };
     (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));

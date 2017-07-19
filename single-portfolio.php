@@ -17,7 +17,7 @@ get_header(); ?>
 
 <?php do_action( 'foundationpress_before_content' ); ?>
 <?php while ( have_posts() ) : the_post(); ?>
-	<article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
+	<section <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
 		<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
       if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
     } ?>
@@ -78,14 +78,14 @@ get_header(); ?>
 
 		<nav id="nav-single" class="nav-single">
 			<div class="nav-single-inner">
-				<span class="nav-previous"><?php next_post_link( '%link', '<span class="meta-nav">' . _x( '&laquo;', 'Previous post link', 'wp-forge' ) . '</span> %title' ); ?></span>
-				<span class="nav-next"><?php previous_post_link( '%link', '%title <span class="meta-nav">' . _x( '&raquo;', 'Next post link', 'wp-forge' ) . '</span>' ); ?></span>
+				<span class="nav-previous"><?php next_post_link( '%link', '<span class="meta-nav">' . _x( '&laquo;', 'Previous post link', 'allonsy' ) . '</span> %title' ); ?></span>
+				<span class="nav-next"><?php previous_post_link( '%link', '%title <span class="meta-nav">' . _x( '&raquo;', 'Next post link', 'allonsy' ) . '</span>' ); ?></span>
 			</div>
 		</nav><!-- .nav-single -->
 		<?php do_action( 'foundationpress_post_before_comments' ); ?>
 		<?php comments_template(); ?>
 		<?php do_action( 'foundationpress_post_after_comments' ); ?>
-	</article>
+	</section>
 <?php endwhile;?>
 
 <?php do_action( 'foundationpress_after_content' ); ?>

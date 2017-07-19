@@ -609,6 +609,29 @@ function newuptown_customize_register( $wp_customize ) {
   ) ) );
 
 
+  // Add General Settings Section
+  $wp_customize->add_section( 'general-settings' , array(
+    'title' => __( 'General Settings', 'allonsy' ),
+    'priority' => 35,
+    'description' => __( 'General settings, such as page loading animation, page loading graphic, etc.', 'allonsy' )
+  ) );
+  // Loading Animation
+  $wp_customize->add_setting( 'loading-animation' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'loading-animation', array(
+      'label' => __( 'Enable the loading animation?', 'allonsy' ),
+      'section' => 'general-settings',
+      'type' => 'checkbox',
+      'description' => 'Check this box to enable the page loading animation',
+  ) ) );
+  // Default Title Bar Image URL
+  $wp_customize->add_setting( 'loading-animation-image' , array( 'default' => '','sanitize_callback' => 'esc_url_raw', 'transport' => 'postMessage' ) );
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'loading-animation-image', array(
+      'label' => __( 'Default Loading Animation Image', 'allonsy' ),
+      'section' => 'general-settings',
+      'settings' => 'loading-animation-image',
+  ) ) );
+
+
   // Header Options
   $wp_customize->add_section( 'header-options' , array(
     'title' => __( 'Header Options', 'allonsy' ),
@@ -684,9 +707,9 @@ function newuptown_customize_register( $wp_customize ) {
       'description' => 'Check this box to enable the title bar with background image on internal pages',
   ) ) );
   // Default Title Bar Image URL
-  $wp_customize->add_setting( 'default-title-bar-image' , array( 'default' => '' ) );
-  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'default-title-bar-image', array(
-      'label' => __( 'Default Title Bar Image URL', 'allonsy' ),
+  $wp_customize->add_setting( 'default-title-bar-image' , array( 'default' => '','sanitize_callback' => 'esc_url_raw', 'transport' => 'postMessage' ) );
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'default-title-bar-image', array(
+      'label' => __( 'Default Title Bar Image', 'allonsy' ),
       'section' => 'internal-pages',
       'settings' => 'default-title-bar-image',
   ) ) );
