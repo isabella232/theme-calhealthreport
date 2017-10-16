@@ -66,7 +66,6 @@ add_filter('body_class','add_not_home_body_class');
 // 	return $classes;
 // }
 // add_filter('nav_menu_css_class' , 'yoast_primary_category_nav_class' , 10 , 2);
-add_filter('body_class','add_category_to_single');
 function add_category_to_single($classes, $class) {
   if (is_single() ) {
     global $post;
@@ -78,6 +77,7 @@ function add_category_to_single($classes, $class) {
   // return the $classes array
   return $classes;
 }
+add_filter( 'body_class', 'add_category_to_single', 10, 2 );
 
 
 
