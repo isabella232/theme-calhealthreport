@@ -66,6 +66,10 @@ add_filter('body_class','add_not_home_body_class');
 // 	return $classes;
 // }
 // add_filter('nav_menu_css_class' , 'yoast_primary_category_nav_class' , 10 , 2);
+
+/**
+ * Add category slugs to the body class on single posts
+ */
 function add_category_to_single($classes, $class) {
   if (is_single() ) {
     global $post;
