@@ -1,7 +1,11 @@
-			<ul class="social-media-wrapper">
-				<?php $search_position = get_theme_mod('search-position'); if( $search_position == 'search-social-menu' ) { ?>
+			<?php $search_position = get_theme_mod('search-position'); ?>
+			<ul class="social-media-wrapper <?php if( $search_position == 'search-social-menu' ) { ?>has-search<?php } ?>">
+				<?php if( $search_position == 'search-social-menu' ) { ?>
 				<li class="inline-social-search-wrapper">
-					<?php get_search_form(); ?>
+					<button class="search-toggle"><i class="fa fa-search"></i></button>
+					<div class="menu-search-wrapper">
+						<?php get_search_form(); ?>
+					</div>
 				</li>
 				<?php } ?>
 				<?php if( get_theme_mod('facebook')): ?><li class="facebook"><a href="<?php echo get_theme_mod('facebook','default'); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
@@ -14,5 +18,7 @@
 				<?php if( get_theme_mod('vimeo')): ?><li class="vimeo"><a href="<?php echo get_theme_mod('vimeo','default'); ?>" target="_blank"><i class="fa fa-vimeo"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('contact')): ?><li class="contact"><a href="<?php echo get_theme_mod('contact','default'); ?>"><i class="fa fa-envelope-o"></i></a></li><?php endif; ?>
 				<?php if( get_theme_mod('rss')): ?><li class="rss"><a href="<?php echo get_theme_mod('rss','default'); ?>" target="_blank"><i class="fa fa-rss"></i></a></li><?php endif; ?>
-				<?php if( get_theme_mod('custom')): ?><li class="custom-button"><a href="<?php echo get_theme_mod('custom','default'); ?>" target="_blank"><?php echo get_theme_mod('custom-text','default'); ?></a></li><?php endif; ?>
+				<?php if( get_theme_mod('custom')): ?><li class="custom-button"><a href="<?php echo get_theme_mod('custom','default'); ?>"><?php echo get_theme_mod('custom-text','default'); ?></a></li><?php endif; ?>
+
+				<?php if( get_theme_mod('modal')): ?><li class="modal-button"><a href="#"><?php echo get_theme_mod('modal-text','default'); ?></a></li><?php endif; ?>
 			</ul>

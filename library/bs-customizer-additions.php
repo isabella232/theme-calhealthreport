@@ -608,6 +608,29 @@ function newuptown_customize_register( $wp_customize ) {
       'settings' => 'custom-text',
   ) ) );
 
+  // Add Custom Modal Setting
+  $wp_customize->add_setting( 'modal' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'modal', array(
+      'label' => __( 'Custom Modal Button?', 'allonsy' ),
+      'type' => 'checkbox',
+      'description' => 'Check this box to enable a custom modal button in the header',
+      'section' => 'social-media',
+      'settings' => 'modal',
+  ) ) );
+  $wp_customize->add_setting( 'modal-text' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'modal-text', array(
+      'label' => __( 'Custom Modal Button Text', 'allonsy' ),
+      'section' => 'social-media',
+      'settings' => 'modal-text',
+  ) ) );
+  $wp_customize->add_setting( 'modal-content' , array( 'default' => '' ));
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'modal-content', array(
+      'label' => __( 'Custom Modal Content (accepts shortcodes)', 'allonsy' ),
+      'type' => 'textarea',
+      'section' => 'social-media',
+      'settings' => 'modal-content',
+  ) ) );
+
 
   // Add General Settings Section
   $wp_customize->add_section( 'general-settings' , array(
@@ -831,7 +854,8 @@ nav.off-canvas ul.social-media-wrapper li a:hover,
 nav.off-canvas ul.social-media-wrapper li a:focus {
   color: <?php echo esc_attr(get_theme_mod('sm_hover_color','#272e31')); ?>;
 }
-header#masthead ul.social-media-wrapper li.custom-button a {
+header#masthead ul.social-media-wrapper li.custom-button a,
+header#masthead ul.social-media-wrapper li.modal-button a {
   color: #FFF;
   background: <?php echo esc_attr(get_theme_mod('sm_color','#2199e8')); ?>;
   -webkit-transition: background .2s ease-out;
@@ -840,7 +864,9 @@ header#masthead ul.social-media-wrapper li.custom-button a {
   transition: background .2s ease-out;
 }
 header#masthead ul.social-media-wrapper li.custom-button a:hover,
-header#masthead ul.social-media-wrapper li.custom-button a:focus {
+header#masthead ul.social-media-wrapper li.custom-button a:focus,
+header#masthead ul.social-media-wrapper li.modal-button a:hover,
+header#masthead ul.social-media-wrapper li.modal-button a:focus {
   color: #FFF;
   background: <?php echo esc_attr(get_theme_mod('sm_hover_color','#272e31')); ?>;
 }

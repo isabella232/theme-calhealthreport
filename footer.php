@@ -9,6 +9,17 @@
  */
 
 ?>
+		<?php if( !is_front_page() ) : ?>
+
+			<?php if( is_active_sidebar('pre-footer-widgets-1') ) : ?>
+			<div id="pre-footer-1" class="pre-footer-widgets">
+				<div class="pre-footer-inner max-width-twelve-hundred">
+					<?php dynamic_sidebar( 'pre-footer-widgets-1' ); ?>
+				</div>
+			</div>
+			<?php endif; ?>
+
+		<?php endif; ?>
 
 		</section>
 		<div id="footer-container">
@@ -41,6 +52,16 @@
 </div><!-- Close off-canvas content wrapper -->
 <?php endif; ?>
 
+<?php if( get_theme_mod('modal')): ?>
+<div class="custom-modal">
+	<div class="custom-modal-overlay">
+		<div class="custom-modal-inner">
+			<a class="close" href="#">X Close</a>
+			<?php echo do_shortcode( get_theme_mod('modal-content','default') ); ?>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
 
 <?php wp_footer(); ?>
 
@@ -59,58 +80,39 @@
 
 	jQuery(document).ready(function($) {
 
-		// Show/Hide Search Form
 		$('button.search-toggle').click(function() {
-			$('nav.top-bar.has-search .menu-search-wrapper form#searchform').toggleClass('show');
+			$('.social-media-wrapper.has-search .menu-search-wrapper').toggleClass('show');
 		});
-
-		// $('input[type="checkbox"]').click(function() {
-		// 	var inputID = $(this).attr('id');
-		//  	$('label[for="' + inputID + '"]').toggleClass('checked');
-		// });
-		$('ul.project-filters li.projects a').click(function() {
-			$('#projects-list').addClass('show-filters');
-			$('body').addClass('filters-open');
-			$('input#impact-all').click();
+		$('li.modal-button a').click(function() {
+			$('.custom-modal').addClass('active');
+			$('body').addClass('modal-active');
 			return false;
 		});
-		$('.close-project-filters a').click(function() {
-			$('#projects-list.show-filters').removeClass('show-filters');
-			$('body').removeClass('filters-open');
+		$('.custom-modal-inner a.close').click(function() {
+			$('.custom-modal.active').removeClass('active');
+			$('body').removeClass('modal-active');
 			return false;
 		});
-		$heightOnLoad = $('#home-hero-wrapper').height();
-		// console.log($heightOnLoad);
-		$(window).resize(function() {
-			$('body.mobile #home-hero-wrapper').css({'min-height':$heightOnLoad});
-		});
-	});
-
-	jQuery(document).ready(function($) {
-		$('#preloader img').delay(10).show();
-		$('.home #video-iframe-1').delay(500).load(function() {
-
-			// Site Preloader
-			$('#preloader').addClass('loaded')
-			// $('#preloader img').fadeIn('fast');
-			// $('#preloader .spinner').addClass('loaded');
-			// $('#preloader img').addClass('loaded');
-			$('#preloader.loaded').delay(250).fadeOut(1000, function() {
-				$(this).hide();
-			});
+		$(document).keyup(function(e) {
+    	if (e.keyCode == 27) {
+				$('.custom-modal.active').removeClass('active');
+				$('body').removeClass('modal-active');
+    	}
 		});
 
 		$(window).imagesLoaded(function() {
 
 			// Site Preloader
 			$('#preloader').addClass('loaded')
-			// $('#preloader img').fadeIn('fast');
-			// $('#preloader .spinner').addClass('loaded');
-			// $('#preloader img').addClass('loaded');
 			$('#preloader.loaded').delay(250).fadeOut(1000, function() {
 				$(this).hide();
 			});
 
+		});
+
+		// Show/Hide Search Form
+		$('button.search-toggle').click(function() {
+			$('nav.top-bar.has-search .menu-search-wrapper form#searchform').toggleClass('show');
 		});
 
 	  // Back to top script
@@ -152,88 +154,6 @@
 
 	});
 
-	// Masonry Layout for Portfolio, Blog Posts, and Events
-	(function ($) {
-		var $container = $('.bs-isotope');
-		$container.imagesLoaded(function() {
-			$container.isotope({
-				itemSelector: '.bs-isotope-item',
-				layoutMode: 'masonry'
-			});
-			$container.isotope('layout').isotope();
-		});
-		$(window).trigger('resize');
-	}(jQuery));
-
-
-	// Lazy Load with Isotope/Masonry Layout
-	$('.lazy-isotope-wrapper').each(function(){
-
-		var $isotope = $('.lazy-isotope', this);
-
-		$isotope.isotope({
-			itemSelector: '.bs-isotope-item',
-			layoutMode: 'masonry'
-		});
-
-	  $isotope[0].addEventListener('load', (function(){
-	    var runs;
-	    var update = function(){
-	      $isotope.isotope('layout');
-	      runs = false;
-	    };
-	    return function(){
-	      if(!runs){
-	        runs = true;
-	        setTimeout(update, 33);
-	      }
-	    };
-	  }()), true);
-
-	});
-
-
-	// Isotope Filters for Portfolio
-	jQuery(document).ready(function($) {
-		// cache container
-		var $container = $('.portfolio-container');
-		// filter items when filter link is clicked
-		$('#filters a').click(function(){
-		  var selector = $(this).attr('data-filter');
-		  $container.isotope({ filter: selector });
-			$('#filters a.active').not(this).removeClass('active');
-			$(this).addClass('active');
-		  return false;
-		});
-		$('.title-bar .menu-icon').click(function() {
-			$('body').toggleClass('off-canvas-open');
-		});
-		jQuery('.portfolio-filter-toggle a').click(function() {
-			$('#filters').slideToggle('fast');
-			return false;
-		});
-	});
-
-	// initiating the isotope page
-	jQuery(window).load(function($) {
-
-	    // Store # parameter and add "." before hash
-	    var hashID = "." + window.location.hash.substring(1);
-
-	    //  the current version of isotope, the hack works in v2 also
-	    var $container = jQuery('.portfolio-container');
-
-	    $container.imagesLoaded(function(){
-	        $container.isotope({
-	            itemSelector: ".single-portfolio-item",
-	            filter: hashID, // the variable filter hack
-	        });
-					jQuery('#filters a.active').removeClass('active');
-					jQuery('#filters a[data-filter="' + hashID + '"]').addClass('active');
-	    });
-
-	});
-
 	jQuery(function($) {
 		// Scroll to hash on click
 	  $('a[href*="#"]:not([href="#"])').click(function() {
@@ -257,13 +177,15 @@
 		window.addEventListener('scroll', function(e){
       var distanceY = window.pageYOffset || document.documentElement.scrollTop,
         stickPrep = jQuery('#masthead').height() + 35,
+				topBarHeight = jQuery('.top-bar-bottom').height(),
         header = document.querySelector("body");
       if (distanceY > stickPrep) {
         classie.add(header,"sticky-prep");
-
+				$('#sticky-header-placeholder').css({'height' : topBarHeight });
       } else {
         if (classie.has(header,"sticky-prep")) {
           classie.remove(header,"sticky-prep");
+					$('#sticky-header-placeholder').css({'height' : '0' });
         }
       }
   	});
@@ -314,13 +236,15 @@
     }]
 	});
 
-	$('.portfolio-gallery').slick({
-	  dots: true,
+	$('.bs-blog-loop-carousel').slick({
+	  dots: false,
 	  infinite: true,
+		autoplay: true,
+		autoplaySpeed: 7000,
 	  speed: 300,
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
-		arrows: false
+		arrows: false,
 	});
 
 	;( function( $ ) {
@@ -339,43 +263,11 @@
 		} );
 	} )( jQuery );
 
-	jQuery(function($) {
-		// Scroll to hash on click
-	  $('a[href*="#"]:not([href="#"])').click(function() {
-	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-	      var target = $(this.hash);
-				console.log(target);
-	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-	      if (target.length) {
-					$('.top-bar-right .menu li.active').removeClass('active');
-					$(this).addClass('active');
-	        $('html, body').animate({
-	          // scrollTop: target.offset().top - topScrollOffset
-						scrollTop: target.offset().top
-	        }, 1000);
-	        return false;
-	      }
-	    }
-	  });
-
-	});
-
 	//Light header switch Waypoint script
 	shrinkOn = jQuery('#masthead').height() * 2;
-
-	// var sharewaypoint = new Waypoint({
-	// 	element: document.getElementById('toggle-reverse'),
-	// 	handler: function(direction) {
-	// 		jQuery('#masthead').toggleClass('reverse-header');
-	// 		jQuery('.down-arrow').removeClass('animated');
-	// 	},
-	// 	offset: shrinkOn
-	// });
 
 </script>
 
 <?php do_action( 'foundationpress_before_closing_body' ); ?>
-<script id="__bs_script__">//<![CDATA[document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));
-//]]></script>
 </body>
 </html>

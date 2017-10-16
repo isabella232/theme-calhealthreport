@@ -1,7 +1,7 @@
 <?php
 // Custom Excerpt Length
 function custom_excerpt_length( $length ) {
-	return 45;
+	return 65;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
@@ -12,6 +12,24 @@ function bs_current_year() {
 	return $year;
 }
 add_shortcode('year','bs_current_year');
+
+
+// New Excerpt More
+function new_excerpt_more( $more ) {
+    return '';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+
+// Remove 'Category:' and 'Tag:' from archive.php title
+add_filter( 'get_the_archive_title', function ($title) {
+  if ( is_category() ) {
+    $title = single_cat_title( '', false );
+  } elseif ( is_tag() ) {
+    $title = single_tag_title( '', false );
+	}
+return $title;
+});
 
 
 // Allow the upload of SVG graphics to Media Library
@@ -35,6 +53,36 @@ function add_not_home_body_class($classes) {
     return $classes;
 }
 add_filter('body_class','add_not_home_body_class');
+
+
+// Add Primary Category to menu item classes
+// function yoast_primary_category_nav_class( $classes, $item ) {
+//
+// 	if( class_exists('WPSEO_Primary_Term') ) {
+// 		$wpseo_primary_term = new WPSEO_Primary_Term( 'category', get_the_id() );
+// 		$wpseo_primary_term = $wpseo_primary_term->get_primary_term();
+// 		$classes[] = 'current-primary-category';
+// 	}
+// 	return $classes;
+// }
+// add_filter('nav_menu_css_class' , 'yoast_primary_category_nav_class' , 10 , 2);
+
+/**
+ * Add category slugs to the body class on single posts
+ */
+function add_category_to_single($classes, $class) {
+  if (is_single() ) {
+    global $post;
+    foreach((get_the_category($post->ID)) as $category) {
+      // add category slug to the $classes array
+      $classes[] = $category->category_nicename;
+    }
+  }
+  // return the $classes array
+  return $classes;
+}
+add_filter( 'body_class', 'add_category_to_single', 10, 2 );
+
 
 
 // Enqueue Scripts
@@ -154,43 +202,6 @@ return $bs_social_variable;
 }
 
 
-// Services Shortcode
-add_shortcode( 'services_loop', 'bs_services_loop' );
-function bs_services_loop( $atts ) {
-    $args = shortcode_atts( array(
-			'category' => '',
-    ), $atts, 'services_loop' );
-    ob_start();
-    $query = new WP_Query( array(
-      'post_type' => 'service',
-			'order_by' => 'date',
-			'order' => 'ASC',
-      'posts_per_page' => -1,
-    ) );
-
-    if ( $query->have_posts() ) :
-      while ( $query->have_posts() ) : $query->the_post(); ?>
-        <?php
-            $image_id = get_post_thumbnail_id();
-						$image_url = wp_get_attachment_image_src($image_id,'full', true);
-            $post_id = get_the_ID();
-						global $post;
-        ?>
-        <article <?php post_class('service-main-content') ?> id="<?php echo $post->post_name; ?>">
-          <section class="entry-content">
-            <h3 class="service-title"><?php the_title(); ?></h3>
-						<?php if( $image_id ) { ?><img src="<?php echo $image_url[0]; ?>" style="margin: 10px 0; width: 100%; max-width: 100%; height: auto;" alt="Service featured image" /><?php } ?>
-						<div class="service-content<?php if( $image_id ) { ?> has-featured-image<?php } ?>">
-							<?php the_content(); ?>
-						</div>
-          </section>
-        </article>
-      <?php endwhile; wp_reset_postdata(); ?>
-      <?php $myvariable = ob_get_clean(); return $myvariable;
-    endif;
-}
-
-
 // Custom pagination
 function custom_pagination($numpages = '', $pagerange = '', $paged='') {
   if (empty($pagerange)) { $pagerange = 2; }
@@ -239,6 +250,7 @@ function bs_blog_loop( $atts ) {
 			'cat' => '0',
 			'order_by' => 'date',
 			'order' => 'DESC',
+			'offset' => '',
 			'show_meta' => '1',
 			'show_date' => '1',
 			'show_author' => '0',
@@ -249,8 +261,10 @@ function bs_blog_loop( $atts ) {
 			'show_readmore' => '1',
 			'show_thumbnail' => '1',
 			'default_thumbnail' => '',
+			'exclude' => '',
 			'thumbnail_size' => 'bs_blog',
 			'pagination' => '0',
+			'display' => '',
     ), $atts, 'bs_blog_loop' );
     ob_start();
 
@@ -271,6 +285,8 @@ function bs_blog_loop( $atts ) {
 			'status' => 'published',
 			'orderby' => $args['order_by'],
 			'order' => $args['order'],
+			'offset' => $args['offset'],
+			'post__not_in' => array($args['exclude']),
       'posts_per_page' => $args['ppp'],
 			'cat' => $args['cat'],
 			//'offset' => $args['offset'],
@@ -280,7 +296,7 @@ function bs_blog_loop( $atts ) {
     $bs_query = new WP_Query( $custom_query_args );
 
     ?>
-			<section class="bs-blog-loop temp-blog-wrapper">
+			<section class="bs-blog-loop temp-blog-wrapper <?php if($args['display'] == 'grid') { echo 'bs-blog-loop-grid'; } elseif($args['display'] == 'carousel') { echo 'bs-blog-loop-carousel'; } else { echo 'bs-blog-loop-list'; } ?>">
 			<?php if ( $bs_query->have_posts() ) : while ( $bs_query->have_posts() ) : $bs_query->the_post(); ?>
 
 			<?php
@@ -288,7 +304,7 @@ function bs_blog_loop( $atts ) {
 				$image_size = $args['thumbnail_size'];
 			?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('bs-single-post'); ?>>
 				<?php if($args['show_thumbnail'] == '1' && has_post_thumbnail()) { ?>
 					<div class="blog-featured-image">
 						<figure><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail( $image_size ); ?></a></figure>
@@ -307,20 +323,20 @@ function bs_blog_loop( $atts ) {
 						<?php if($args['show_meta'] == '1') { ?>
 						<div class="blog-meta">
 							<?php if($args['show_date'] == '1') { ?>
-								<p class="bs-post-date"><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo get_the_date(); ?></p>
+								<p class="bs-post-date"><!-- <i class="fa fa-calendar" aria-hidden="true"></i> --><?php echo get_the_date(); ?></p>
 							<?php } ?>
 
 							<?php if($args['show_author'] == '1') { ?>
 								<p class="bs-post-byline">
-									<?php if($args['show_avatar'] == '1') { ?><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span> <?php } else { ?><i class="fa fa-user" aria-hidden="true"></i> <?php } ?><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title=""><?php the_author_meta( 'display_name' ); ?></a></p>
+									<?php if($args['show_avatar'] == '1') { ?><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span> <?php } ?>By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title=""><?php the_author_meta( 'display_name' ); ?></a></p>
 							<?php } ?>
 
 							<?php if($args['show_cats'] == '1') { ?>
-								<p class="bs-post-cats"><i class="fa fa-folder-open" aria-hidden="true"></i> <?php the_category(','); ?></p>
+								<p class="bs-post-cats"><!-- <i class="fa fa-folder-open" aria-hidden="true"></i> --><?php the_category(','); ?></p>
 							<?php } ?>
 
 							<?php if($args['show_comments'] == '1') { ?>
-								<p class="bs-post-comments"><i class="fa fa-comments" aria-hidden="true"></i> <a href="<?php comments_link(); ?>" title="Join the discussion"><?php comments_number( 'no comments', '1 comment', '% comments' ); ?></a></p>
+								<p class="bs-post-comments"><!-- <i class="fa fa-comments" aria-hidden="true"></i> --><a href="<?php comments_link(); ?>" title="Join the discussion"><?php comments_number( 'no comments', '1 comment', '% comments' ); ?></a></p>
 							<?php } ?>
 						</div>
 						<?php } ?>
@@ -333,7 +349,7 @@ function bs_blog_loop( $atts ) {
 
 						<?php if($args['show_readmore'] == '1') { ?>
 						<div class="blog-footer">
-							<a class="blog-read-more" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More...</a>
+							<a class="blog-read-more" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More &raquo;</a>
 						</div>
 						<?php } ?>
 					</div>
