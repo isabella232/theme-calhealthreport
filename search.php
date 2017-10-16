@@ -12,11 +12,13 @@ get_header(); ?>
   get_template_part( 'template-parts/search-title-bar' );
 } ?>
 
+<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
+  if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav class="max-width-twelve-hundred" aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
+} ?>
+
 <div id="page" class="search-results row">
 	<section class="main-content">
-		<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
-      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
-    } ?>
+
     <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
       <h1 class="entry-title"><?php _e( 'Search Results' ); ?></h1>
     <?php } ?>
@@ -45,6 +47,6 @@ get_header(); ?>
     </div>
 
 	</section>
-	<?php get_sidebar(); ?>
+	<?php get_sidebar('archives'); ?>
 </div>
 <?php get_footer();

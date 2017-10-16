@@ -16,14 +16,15 @@ get_header(); ?>
   get_template_part( 'template-parts/title-bar' );
 } ?>
 
+<?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
+  if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav class="max-width-twelve-hundred" aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
+} ?>
+
 <div id="page" role="main">
 
 <?php do_action( 'foundationpress_before_content' ); ?>
 <?php while ( have_posts() ) : the_post(); ?>
   <section <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
-    <?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
-      if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
-    } ?>
     <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
       <h1 class="entry-title"><?php the_title(); ?></h1>
     <?php } ?>
@@ -35,9 +36,6 @@ get_header(); ?>
       <?php wp_link_pages( array('before' => '<nav id="page-nav"><p>' . __( 'Pages:', 'foundationpress' ), 'after' => '</p></nav>' ) ); ?>
       <p><?php the_tags(); ?></p>
     </footer>
-    <?php do_action( 'foundationpress_page_before_comments' ); ?>
-    <?php comments_template(); ?>
-    <?php do_action( 'foundationpress_page_after_comments' ); ?>
   </section>
 <?php endwhile;?>
 

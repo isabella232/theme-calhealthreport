@@ -10,20 +10,27 @@
 global $post;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('blogpost-entry all-posts-wrapper'); ?>>
+<div class="blogpost-entry all-posts-wrapper bs-blog-loop-list">
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
-		<div class="entry-content">
-			<?php if ( has_post_thumbnail() ) { ?>
-			<div class="article-left blog-page-featured-image">
-				<figure><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a></figure>
-			</div>
-			<?php } ?>
-			<div class="blog-page-title-excerpt article-right">
+	<article id="post-<?php the_ID(); ?>" <?php post_class('bs-single-post index-card'); ?>>
+		<?php if ( has_post_thumbnail() ) { ?>
+		<div class="article-left blog-featured-image">
+			<figure><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('bs_blog'); ?></a></figure>
+		</div>
+		<?php } ?>
+		<div class="article-right entry-content">
+			<div class="bs-post-title">
 				<h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
-				<p class="author-date post-meta"><span class="post-meta-date"><?php the_date('M j, Y'); ?></span></p>
-				<div class="post-excerpt"><?php the_excerpt(); ?></div>
 			</div>
+
+			<div class="blog-meta">
+				<!-- <p class="bs-post-date"><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo get_the_date(); ?></p> -->
+
+				<p class="bs-post-byline"><!-- <i class="fa fa-user" aria-hidden="true"></i> -->By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' )); ?>" title=""><?php the_author_meta( 'display_name' ); ?></a></p>
+
+			</div>
+
+			<div class="bs-post-excerpt"><?php the_excerpt(); ?></div>
 		</div>
 	</article>
 </div>

@@ -5,17 +5,17 @@
 		$hide_social = get_theme_mod('hide_header_social');
 		$alt_nav = get_theme_mod('show_alt_nav');
 	?>
-
+	<?php if( get_theme_mod( 'sticky-header' ) != '') { ?><div id="sticky-header-placeholder"></div><?php } ?>
 	<header id="masthead" class="site-header header-option-two <?php if( get_theme_mod( 'sticky-header' ) != '') { ?>sticky-header<?php } ?>" role="banner">
-		<div id="header-inner" class="max-width-eleven-seventy">
-			<div class="title-bar" data-responsive-toggle="site-navigation">
+		<div id="header-inner" class="max-width-twelve-hundred">
+			<div class="title-bar" data-responsive-toggle="site-navigation" data-hide-for="large">
 				<div class="title-bar-title">
 					<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
 				</div>
 				<button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
 			</div>
 
-			<nav id="site-navigation" class="main-navigation top-bar <?php if( $search_position == 'search-menu' ) { ?>has-search<?php } ?>" role="navigation">
+			<nav id="site-navigation" class="main-navigation show-for-large-up top-bar <?php if( $search_position == 'search-menu' ) { ?>has-search<?php } ?>" role="navigation" data-hide-for="large">
 				<div class="top-bar-left-right-wrapper">
 					<div class="top-bar-left logo-wrapper hide-for-small-only">
 						<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
