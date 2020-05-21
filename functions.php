@@ -56,6 +56,9 @@ require_once( 'library/bs-custom-functions.php' );
 /** Customizer Additions */
 require_once( 'library/bs-customizer-additions.php' );
 
+/** The "Subhead" metabox and related functions */
+require_once( 'library/metabox-subhead.php' );
+
 /** Required and Recommended Plugins */
 require_once( 'library/class-tgm-plugin-activation.php' );
 require_once( 'library/bs-plugin-activation.php' );
