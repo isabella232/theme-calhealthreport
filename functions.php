@@ -98,3 +98,48 @@ add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 
     return str_replace( ' src', ' async src', $tag );
 }, 10, 2 );
+
+/**
+ * Register custom sidebars and other widget areas
+ * 
+ * @see https://github.com/INN/largo/blob/590181982d22a5444eb3c5ccca58ea8b56db12f7/inc/sidebars.php#L3-L129
+ */
+function calhealth_register_custom_sidebars() {
+
+	$sidebars = array(
+
+		array(
+			'name' 	=> __( 'Article Bottom', 'allonsy' ),
+			'desc' 	=> __( 'Footer widget area for posts', 'allonsy' ),
+			'id' 	=> 'article-bottom'
+		),
+
+	);
+
+	// register the active widget areas
+	foreach ( $sidebars as $sidebar ) {
+		register_sidebar( array(
+			'name' 			=> $sidebar['name'],
+			'description' 	=> $sidebar['desc'],
+			'id' 			=> $sidebar['id'],
+			'before_widget' => '<!-- Sidebar: ' . $sidebar['id'] . ' --><aside id="%1$s" class="%2$s clearfix side-widget">',
+			'after_widget' 	=> "</aside>",
+			'before_title' 	=> '<h3 class="widgettitle">',
+			'after_title' 	=> '</h3>',
+		) );
+	}
+
+}
+add_action( 'widgets_init', 'calhealth_register_custom_sidebars' );
+
+/**
+ * If the article bottom widget area has active widgets, go ahead and show it
+ * 
+ * @see https://github.com/INN/umbrella-elpasomatters/issues/3
+ */
+function calhealth_post_bottom_widget_area() {
+	if ( is_active_sidebar( 'article-bottom' ) ) {
+		dynamic_sidebar( 'article-bottom' );
+	}
+}
+add_action( 'calhealth_post_bottom_widget_area', 'calhealth_post_bottom_widget_area' );

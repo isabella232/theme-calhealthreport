@@ -76,6 +76,13 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 
 <?php do_action( 'foundationpress_after_content' ); ?>
 <?php if( $hide_sidebar != 'yes' ) : get_sidebar('posts'); endif; ?>
+<?php 
+
+	// custom article bottom widget area
+	// added for https://github.com/INN/theme-calhealthreport/issues/15
+	do_action( 'calhealth_post_bottom_widget_area' ); 
+
+?>
 </div>
 <?php get_template_part( 'template-parts/related-posts' ); ?>
 <?php get_footer();
