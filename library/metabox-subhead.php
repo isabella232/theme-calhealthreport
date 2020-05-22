@@ -32,7 +32,7 @@ function subtitle_meta_box_display() {
  * @param bool    $update whether the post is being updated
  * @return null
  */
-function subtitle_meta_box_save( $post_id, $post, $update ) {
+function subtitle_meta_box_save( $post_id, $post, $update = false ) {
 	if ( ! wp_verify_nonce( $_POST['subtitle_meta_box_nonce'], $_POST['subtitle_meta_box_nonce'] ) ) {
 		return;
 	}
@@ -60,7 +60,7 @@ function subtitle_meta_box_save( $post_id, $post, $update ) {
 
 	return $subtitle;
 }
-add_action( 'save_post', 'subtitle_meta_box_save', 10, 2 );
+add_action( 'save_post', 'subtitle_meta_box_save', 10, 3 );
 
 /**
  * Register our subtitle metabox
