@@ -4,6 +4,26 @@
  */
 
 /**
+ * Register the 'subtitle' post meta
+ */
+function subtitle_meta_box_register_post_meta() {
+	return register_post_meta(
+		'post',
+		'subtitle',
+		array(
+			'object_subtype' => 'post',
+			'type' => 'string',
+			'description' => __( 'The subhead, deck, subtitle, or lead is a preface shown on article pages below the main title.' , 'allonsy' ),
+			'single' => true,
+			'sanitize_callback' => 'sanitize_textarea_field',
+			// 'auth_callback' => '',
+			'show_in_rest' => true,
+		),
+	);
+}
+add_action( 'init', 'subtitle_meta_box_register_post_meta' );
+
+/**
  * Output the subtitle metabox.
  *
  * @link Copied from https://github.com/INN/umbrella-wcij/blob/16247cdd8f03a593633c82f8836c4c1e8aa83987/wp-content/themes/wisconsinwatch/inc/metaboxes.php with improvements
@@ -33,7 +53,13 @@ function subtitle_meta_box_display() {
  * @return null
  */
 function subtitle_meta_box_save( $post_id, $post, $update = false ) {
+	if ( ! isset( $_POST['subtitle_meta_box_nonce'] ) ) {
+		error_log(var_export( 'subtitle meta box nonce not set', true));
+		return;
+	}
+
 	if ( ! wp_verify_nonce( $_POST['subtitle_meta_box_nonce'], $_POST['subtitle_meta_box_nonce'] ) ) {
+		error_log(var_export( 'subtitle meta box nonce not valid', true));
 		return;
 	}
 
