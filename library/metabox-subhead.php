@@ -11,7 +11,7 @@
 function subtitle_meta_box_display() {
 	global $post;
 	$values = get_post_custom( $post->ID );
-	wp_nonce_field( 'largo_meta_box_nonce', 'meta_box_nonce' );
+	wp_nonce_field( 'subtitle_meta_box_nonce', 'subtitle_meta_box_nonce' );
 	?>
 		<label for="subtitle"><?php esc_html_e( 'Subtitle', 'largo' ); ?></label>
 		<textarea name="subtitle" id="subtitle" class="widefat" rows="2" cols="20"><?php
@@ -23,6 +23,45 @@ function subtitle_meta_box_display() {
 		<p><small><?php esc_html_e( 'HTML tags that are allowed in posts are allowed in this area.', 'largo' ); ?></small></p>
 	<?php
 }
+
+/**
+ * Save action for the metabox
+ *
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post Post object.
+ * @param bool    $update whether the post is being updated
+ * @return null
+ */
+function subtitle_meta_box_save( $post_id, $post, $update ) {
+	if ( ! wp_verify_nonce( $_POST['subtitle_meta_box_nonce'], $_POST['subtitle_meta_box_nonce'] ) ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	if ( wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	$subtitle = wp_kses_post( $_POST['subtitle'] );
+	error_log(var_export( $subtitle, true));
+
+	if ( ! empty( $subtitle ) ) {
+		update_post_meta( $post_id, 'subtitle', $subtitle );
+	} else {
+		delete_post_meta( $post_id, 'subtitle' );
+	}
+
+	return $subtitle;
+}
+add_action( 'save_post', 'subtitle_meta_box_save', 10, 2 );
+
 /**
  * Register our subtitle metabox
  *
@@ -30,16 +69,15 @@ function subtitle_meta_box_display() {
  * If Publicsource switches to Gutenberg, read https://developer.wordpress.org/block-editor/developers/backward-compatibility/meta-box/ and update this box as necessary.
  */
 add_action(
-	'init',
+	'add_meta_boxes',
 	function() {
-		largo_add_meta_box(
-			'subtitle',
-			'Subtitle',
-			'subtitle_meta_box_display',
-			'post',
-			'normal',
-			'high'
+		add_meta_box(
+			'subtitle', // id
+			__( 'Subtitle', 'allonsy' ), // title
+			'subtitle_meta_box_display', // callback
+			array( 'post' ), // screen
+			'normal', // context
+			'high' // priority
 		);
-		largo_register_meta_input( 'subtitle', 'wp_filter_post_kses' );
 	}
 );
