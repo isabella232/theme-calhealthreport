@@ -17,20 +17,24 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 <?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
   if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav class="max-width-twelve-hundred" aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
 } ?>
-                <?php calhealth_photo_header_tag( get_post_thumbnail_id() ); ?>
-                <div class="featured-image-bg-layer">
-                </div>
-                <div class="featured-image-container-content">
-                    <?php
+<?php calhealth_photo_header_tag( get_post_thumbnail_id() ); ?>
+<div class="featured-image-bg-layer">
+</div>
+<div class="featured-image-container-content">
+    <?php
 
-                    if( get_post_thumbnail_id() ) {
-                        echo '<div class="featured-image-wrapper"><img class="featured-image-container-mobile-image" src="'.wp_get_attachment_url( get_post_thumbnail_id() ).'"></div>';
-                    }
+    if( get_post_thumbnail_id() ) {
+        echo '<div class="featured-image-wrapper"><img class="featured-image-container-mobile-image" src="'.wp_get_attachment_url( get_post_thumbnail_id() ).'"></div>';
+    }
 
-                    ?>
-                    <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
-                </div>
-                </div>
+    ?>
+    <figcaption><em><?php the_post_thumbnail_caption(); ?></em></figcaption>
+    <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+    <?php if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) : ?>
+        <h2 class="subtitle"><?php echo $subtitle ?></h2>
+    <?php endif; ?>
+</div>
+</div>
 <div id="single-post" class="page-full-width max-width-one-thousand <?php if( isset($hide_sidebar) && $hide_sidebar == 'yes' ) { echo 'no-sidebar'; } ?>" role="main">
 
 <?php do_action( 'foundationpress_before_content' ); ?>
@@ -44,9 +48,6 @@ if( get_theme_mod('internal-title-bar') != '' ) {
         <?php do_action( 'foundationpress_post_before_entry_content' ); ?>
         <div class="bottom-header-content">
             <figcaption><em><?php the_post_thumbnail_caption(); ?></em></figcaption>
-            <?php if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) : ?>
-                <h2 class="subtitle"><?php echo $subtitle ?></h2>
-            <?php endif; ?>
             <div class="bottom-header-inline-content">
                 <?php if( get_theme_mod('about-the-author') != '' ): ?>
                     <div class="post-meta"><p><span class="author-name author-date">By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php the_author(); ?></a> • <?php echo get_the_date( 'M j, Y', $post->ID ); ?></span></p></div>
