@@ -40,7 +40,7 @@ body:not(.home).single .entry-content a,
 body:not(.home).single .entry-content li, 
 body:not(.home).single .entry-content p, 
 body:not(.home).single .entry-content span {
-  font-size: 1.13rem!important;
+  font-size: 1.25rem!important;
 }
 .post-template-single-full-width-image .photo-header-background {
   display: flex;
