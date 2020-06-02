@@ -76,7 +76,6 @@ function subtitle_meta_box_save( $post_id, $post, $update = false ) {
 	}
 
 	$subtitle = wp_kses_post( $_POST['subtitle'] );
-	error_log(var_export( $subtitle, true));
 
 	if ( ! empty( $subtitle ) ) {
 		update_post_meta( $post_id, 'subtitle', $subtitle );
