@@ -55,6 +55,7 @@ body:not(.home).single .entry-content span {
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 0!important;
+  position: relative;
 }
 .post-template-single-full-width-image .photo-header-background h1.entry-title {
   color: #fff;
@@ -64,6 +65,8 @@ body:not(.home).single .entry-content span {
 .post-template-single-full-width-image .photo-header-background h2.subtitle {
   color: #fff;
   max-width: 80%;
+  position: relative;
+  font-size: 1.75rem!important;
 }
 .post-template-single-full-width-image .photo-header-background .featured-image-container-content .featured-image-container-mobile-image {
   margin-bottom: 30px;
@@ -97,6 +100,14 @@ body:not(.home).single .entry-content span {
   }
 }
 @media (min-width: 768px) {
+  .post-template-single-full-width-image .photo-header-background .featured-image-bg-layer {
+    background-color: rgba(0, 0, 0, 0.62);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .post-template-single-full-width-image .featured-image-container-content .featured-image-container-mobile-image {
     display: none;
   }
