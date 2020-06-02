@@ -143,3 +143,34 @@ function calhealth_post_bottom_widget_area() {
 	}
 }
 add_action( 'calhealth_post_bottom_widget_area', 'calhealth_post_bottom_widget_area' );
+
+/**
+ * Enqueue needed files such as stylesheets and scripts
+ */
+function calhealth_stylesheets_and_scripts() {
+	wp_enqueue_style(
+		'calhealth',
+		get_stylesheet_directory_uri().'/style.css',
+		array(),
+		filemtime( get_stylesheet_directory().'/style.css' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'calhealth_stylesheets_and_scripts', 20 );
+
+/**
+ * Include theme files
+ *
+ * Based off of how Largo loads files: https://github.com/INN/largo/blob/v0.6.3/functions.php#L204-L208
+ *
+ */
+function calhealth_require_files() {
+	$includes = array(
+		'/inc/photo-header-template.php'
+	);
+	foreach ( $includes as $include ) {
+		if ( 0 === validate_file( get_stylesheet_directory() ) ) {
+			require_once( get_stylesheet_directory() . $include );
+		}
+	}
+}
+add_action( 'after_setup_theme', 'calhealth_require_files' ); 
