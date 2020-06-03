@@ -33,14 +33,14 @@ function subtitle_meta_box_display() {
 	$values = get_post_custom( $post->ID );
 	wp_nonce_field( 'subtitle_meta_box_nonce', 'subtitle_meta_box_nonce' );
 	?>
-		<label for="subtitle"><?php esc_html_e( 'Subtitle', 'largo' ); ?></label>
+		<label for="subtitle" class="screen-reader-text"><?php esc_html_e( 'Subtitle', 'largo' ); ?></label>
 		<textarea name="subtitle" id="subtitle" class="widefat" rows="2" cols="20"><?php
 			// PHP open/close are at the textarea boundary so we don't prepend/append this with tabs.
 			if ( isset( $values['subtitle'] ) ) {
-				echo wp_kses_post( $values['subtitle'][0] );
+				echo sanitize_text_field( $values['subtitle'][0] );
 			}
 		?></textarea>
-		<p><small><?php esc_html_e( 'HTML tags that are allowed in posts are allowed in this area.', 'largo' ); ?></small></p>
+		<p><small><?php esc_html_e( 'Plain text is allowed in the post subtitle.', 'largo' ); ?></small></p>
 	<?php
 }
 
