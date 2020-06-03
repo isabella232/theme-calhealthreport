@@ -58,7 +58,7 @@ function subtitle_meta_box_save( $post_id, $post, $update = false ) {
 		return;
 	}
 
-	if ( ! wp_verify_nonce( $_POST['subtitle_meta_box_nonce'], $_POST['subtitle_meta_box_nonce'] ) ) {
+	if ( ! wp_verify_nonce( $_POST['subtitle_meta_box_nonce'], 'subtitle_meta_box_nonce' ) ) {
 		error_log(var_export( 'subtitle meta box nonce not valid', true));
 		return;
 	}
