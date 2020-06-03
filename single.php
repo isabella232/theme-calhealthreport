@@ -28,6 +28,20 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 	<section <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
     <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
       <h1 class="entry-title"><?php the_title(); ?></h1>
+      <?php
+        $subtitle = get_post_custom_values( 'subtitle', get_the_ID() );
+        if ( ! empty( $subtitle ) ) {
+          // should be single value post meta, but if it isn't....
+          if ( is_array( $subtitle ) ) {
+            $subtitle = $subtitle[0];
+          }
+
+          printf(
+            '<h2 class="subtitle">%1$s</h2>',
+            esc_html( $subtitle ),
+          );
+        }
+      ?>
       <?php if( get_theme_mod('about-the-author') != '' ): ?>
         <div class="post-meta"><p><span class="author-name author-date">By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php the_author(); ?></a> • <?php echo get_the_date( 'M j, Y', $post->ID ); ?></span></p></div>
       <?php endif; ?>
