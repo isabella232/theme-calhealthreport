@@ -1,6 +1,12 @@
 <?php
 /**
- * Functions related to meta boxes
+ * Functions related to the "Subhead" meta box
+ *
+ * Based on the work in https://github.com/INN/largo/issues/1730 but
+ * without the Largo dependency.
+ *
+ * Development work was done on the assumption that the name for
+ * this text was 'subtitle'; Cal Health Report calls it a 'subhead' instead.
  */
 
 /**
@@ -33,14 +39,14 @@ function subtitle_meta_box_display() {
 	$values = get_post_custom( $post->ID );
 	wp_nonce_field( 'subtitle_meta_box_nonce', 'subtitle_meta_box_nonce' );
 	?>
-		<label for="subtitle" class="screen-reader-text"><?php esc_html_e( 'Subtitle', 'largo' ); ?></label>
+		<label for="subtitle" class="screen-reader-text"><?php esc_html_e( 'Subhead', 'largo' ); ?></label>
 		<textarea name="subtitle" id="subtitle" class="widefat" rows="2" cols="20"><?php
 			// PHP open/close are at the textarea boundary so we don't prepend/append this with tabs.
 			if ( isset( $values['subtitle'] ) ) {
 				echo sanitize_text_field( $values['subtitle'][0] );
 			}
 		?></textarea>
-		<p><small><?php esc_html_e( 'Plain text is allowed in the post subtitle.', 'largo' ); ?></small></p>
+		<p><small><?php esc_html_e( 'Plain text is allowed in the post subhead.', 'largo' ); ?></small></p>
 	<?php
 }
 
@@ -88,7 +94,7 @@ function subtitle_meta_box_save( $post_id, $post, $update = false ) {
 add_action( 'save_post', 'subtitle_meta_box_save', 10, 3 );
 
 /**
- * Register our subtitle metabox
+ * Register our subhead metabox
  *
  * This doesn't have anything special applied to it for Gutenberg.
  * If Publicsource switches to Gutenberg, read https://developer.wordpress.org/block-editor/developers/backward-compatibility/meta-box/ and update this box as necessary.
@@ -98,7 +104,7 @@ add_action(
 	function() {
 		add_meta_box(
 			'subtitle', // id
-			__( 'Subtitle', 'allonsy' ), // title
+			__( 'Subhead', 'allonsy' ), // title
 			'subtitle_meta_box_display', // callback
 			array( 'post' ), // screen
 			'normal', // context
