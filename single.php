@@ -98,5 +98,4 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 
 ?>
 </div>
-<?php get_template_part( 'template-parts/related-posts' ); ?>
 <?php get_footer();

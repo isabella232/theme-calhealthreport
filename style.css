@@ -113,3 +113,45 @@ body:not(.home).single .entry-content span {
     margin-bottom: 3rem;
   }
 }
+
+
+/*
+ * footer widget area styles
+ *
+ * This copies a lot of styles from .bs-related-widgets
+ */
+body:not(.home) .pre-footer-widgets {
+  background: #eee;
+}
+.pre-footer-inner {
+  background: transparent;
+}
+.pre-footer-widgets .widget + .widget {
+  margin-top: 1.875rem;
+}
+.pre-footer-widgets .widget > h6 {
+  font-size: 1.875rem !important; /* ugh */
+}
+.pre-footer-widgets .related_posts_by_taxonomy ul { 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+.pre-footer-widgets .related_posts_by_taxonomy li { 
+  flex: 1 1 18rem;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.pre-footer-widgets .related_posts_by_taxonomy li a { 
+  font-size: 1.25rem;
+  color: #000;
+  font-family: acumin-pro-condensed,"Arial Narrow",Arial,Helvetica,sans-serif !important;
+  font-weight: 700;
+  line-height: 1.1;
+}
