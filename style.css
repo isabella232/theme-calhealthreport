@@ -55,6 +55,7 @@ body:not(.home).single .entry-content span {
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 0!important;
+  position: relative;
 }
 .post-template-single-full-width-image .photo-header-background h1.entry-title {
   color: #fff;
@@ -64,6 +65,8 @@ body:not(.home).single .entry-content span {
 .post-template-single-full-width-image .photo-header-background h2.subtitle {
   color: #fff;
   max-width: 80%;
+  position: relative;
+  font-size: 1.75rem!important;
 }
 .post-template-single-full-width-image .photo-header-background .featured-image-container-content .featured-image-container-mobile-image {
   margin-bottom: 30px;
@@ -97,6 +100,14 @@ body:not(.home).single .entry-content span {
   }
 }
 @media (min-width: 768px) {
+  .post-template-single-full-width-image .photo-header-background .featured-image-bg-layer {
+    background-color: rgba(0, 0, 0, 0.62);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .post-template-single-full-width-image .featured-image-container-content .featured-image-container-mobile-image {
     display: none;
   }
@@ -126,4 +137,45 @@ figcaption em,
 .wp-caption > figcaption.wp-caption-text i,
 figcaption i {
   font-style: normal;
+
+
+/*
+ * footer widget area styles
+ *
+ * This copies a lot of styles from .bs-related-widgets
+ */
+body:not(.home) .pre-footer-widgets {
+  background: #eee;
+}
+.pre-footer-inner {
+  background: transparent;
+}
+.pre-footer-widgets .widget + .widget {
+  margin-top: 1.875rem;
+}
+.pre-footer-widgets .widget > h6 {
+  font-size: 1.875rem !important; /* ugh */
+}
+.pre-footer-widgets .related_posts_by_taxonomy ul { 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+.pre-footer-widgets .related_posts_by_taxonomy li { 
+  flex: 1 1 18rem;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.pre-footer-widgets .related_posts_by_taxonomy li a { 
+  font-size: 1.25rem;
+  color: #000;
+  font-family: acumin-pro-condensed,"Arial Narrow",Arial,Helvetica,sans-serif !important;
+  font-weight: 700;
+  line-height: 1.1;
 }

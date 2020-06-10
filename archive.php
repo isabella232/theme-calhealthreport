@@ -46,5 +46,4 @@ get_header(); ?>
 	</section>
 	<?php /* get_sidebar('archives'); */ ?>
 </div>
-<?php get_template_part( 'template-parts/related-posts' ); ?>
 <?php get_footer();
