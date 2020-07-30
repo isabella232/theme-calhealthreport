@@ -124,6 +124,12 @@ body:not(.home).single .entry-content span {
     margin-bottom: 3rem;
   }
 }
+
+/* https://github.com/INN/theme-calhealthreport/issues/25 */
+#single-post.no-sidebar .main-content {
+  max-width: 40rem;
+}
+
 /* https://github.com/INN/theme-calhealthreport/issues/13 */
 .wp-caption,
 .wp-caption > figcaption.wp-caption-text,
