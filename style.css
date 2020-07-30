@@ -143,6 +143,7 @@ figcaption em,
 .wp-caption > figcaption.wp-caption-text i,
 figcaption i {
   font-style: normal;
+}
 
 
 /*
@@ -178,7 +179,7 @@ body:not(.home) .pre-footer-widgets {
   margin: 0;
   padding: 0;
 }
-.pre-footer-widgets .related_posts_by_taxonomy li a { 
+.pre-footer-widgets .related_posts_by_taxonomy li a {
   font-size: 1.25rem;
   color: #000;
   font-family: acumin-pro-condensed,"Arial Narrow",Arial,Helvetica,sans-serif !important;
