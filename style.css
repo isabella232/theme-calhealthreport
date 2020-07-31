@@ -163,6 +163,7 @@ body:not(.home) .pre-footer-widgets {
 .pre-footer-widgets .widget > h6 {
   font-size: 1.875rem !important; /* ugh */
 }
+.pre-footer-widgets .related_posts_by_taxonomy div.gallery,
 .pre-footer-widgets .related_posts_by_taxonomy ul { 
   display: flex;
   flex-direction: row;
@@ -173,12 +174,30 @@ body:not(.home) .pre-footer-widgets {
   margin: 0;
   padding: 0;
 }
+.pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item img {
+  max-width: 15rem;
+}
+.pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item,
 .pre-footer-widgets .related_posts_by_taxonomy li { 
-  flex: 1 1 18rem;
+  flex: 1 0 15rem;
   display: block;
-  margin: 0;
+  margin: 0 0 1em 0;
   padding: 0;
 }
+@media ( max-width: 60rem ) and ( min-width: 30rem ) {
+  .pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item,
+  .pre-footer-widgets .related_posts_by_taxonomy li { 
+    flex: 1 0 50%;
+  }
+}
+@media ( max-width: calc( 30rem - 1px ) ) {
+  .pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item img {
+    max-width: 25%;
+    float: left;
+    margin-right: 1em;
+  }
+}
+.pre-footer-widgets .related_posts_by_taxonomy figcaption a,
 .pre-footer-widgets .related_posts_by_taxonomy li a {
   font-size: 1.25rem;
   color: #000;
