@@ -40,7 +40,7 @@ body:not(.home).single .entry-content a,
 body:not(.home).single .entry-content li, 
 body:not(.home).single .entry-content p, 
 body:not(.home).single .entry-content span {
-  font-size: 1.25rem!important;
+  font-size: 1.125rem!important;
 }
 .post-template-single-full-width-image .photo-header-background {
   display: flex;
@@ -124,20 +124,18 @@ body:not(.home).single .entry-content span {
     margin-bottom: 3rem;
   }
 }
+
+/* https://github.com/INN/theme-calhealthreport/issues/25 */
+#single-post.no-sidebar .main-content {
+  max-width: 40rem;
+}
+
 /* https://github.com/INN/theme-calhealthreport/issues/13 */
 .wp-caption,
 .wp-caption > figcaption.wp-caption-text,
 figcaption {
   font-style: italic;
 }
-.wp-caption em,
-.wp-caption > figcaption.wp-caption-text em,
-figcaption em,
-.wp-caption i,
-.wp-caption > figcaption.wp-caption-text i,
-figcaption i {
-  font-style: normal;
-
 
 /*
  * footer widget area styles
@@ -156,6 +154,7 @@ body:not(.home) .pre-footer-widgets {
 .pre-footer-widgets .widget > h6 {
   font-size: 1.875rem !important; /* ugh */
 }
+.pre-footer-widgets .related_posts_by_taxonomy div.gallery,
 .pre-footer-widgets .related_posts_by_taxonomy ul { 
   display: flex;
   flex-direction: row;
@@ -166,13 +165,31 @@ body:not(.home) .pre-footer-widgets {
   margin: 0;
   padding: 0;
 }
+.pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item img {
+  max-width: 15rem;
+}
+.pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item,
 .pre-footer-widgets .related_posts_by_taxonomy li { 
-  flex: 1 1 18rem;
+  flex: 1 0 15rem;
   display: block;
-  margin: 0;
+  margin: 0 0 1em 0;
   padding: 0;
 }
-.pre-footer-widgets .related_posts_by_taxonomy li a { 
+@media ( max-width: 60rem ) and ( min-width: 30rem ) {
+  .pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item,
+  .pre-footer-widgets .related_posts_by_taxonomy li { 
+    flex: 1 0 50%;
+  }
+}
+@media ( max-width: calc( 30rem - 1px ) ) {
+  .pre-footer-widgets .related_posts_by_taxonomy figure.gallery-item img {
+    max-width: 25%;
+    float: left;
+    margin-right: 1em;
+  }
+}
+.pre-footer-widgets .related_posts_by_taxonomy figcaption a,
+.pre-footer-widgets .related_posts_by_taxonomy li a {
   font-size: 1.25rem;
   color: #000;
   font-family: acumin-pro-condensed,"Arial Narrow",Arial,Helvetica,sans-serif !important;
