@@ -101,7 +101,7 @@ body:not(.home).single .entry-content span {
 }
 @media (min-width: 768px) {
   .post-template-single-full-width-image .photo-header-background .featured-image-bg-layer {
-    background-color: rgba(0, 0, 0, 0.62);
+    background-color: rgba(0, 0, 0, 0.45);
     position: absolute;
     top: 0;
     left: 0;
