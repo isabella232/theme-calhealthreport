@@ -117,7 +117,7 @@ body:not(.home).single .entry-content span {
   .post-template-single-full-width-image .photo-header-background figcaption {
     display: none;
   }
-  .post-template-single-full-width-image .bottom-header-content figcaption {
+  .post-template-single-full-width-image .no-sidebar .bottom-header-content figcaption {
     margin-left: calc(50% - 48vw) !important;
     max-width: 98vw;
     width: 50vw;
