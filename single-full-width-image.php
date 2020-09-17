@@ -1,9 +1,9 @@
 <?php
 /**
- * The template for displaying all single posts and attachments
+ * Template Name: Full Width Header Image
+ * Description: The template for displaying all single posts and attachments with a full width image in the header
+ * Template Post Type: post
  *
- * @package FoundationPress
- * @since FoundationPress 1.0.0
  */
 
 get_header();
@@ -17,7 +17,24 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 <?php if( get_theme_mod('internal-breadcrumbs') != '' ) {
   if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<nav class="max-width-twelve-hundred" aria-label="You are here:" role="navigation"> <ul class="breadcrumbs">','</ul></nav>'); }
 } ?>
+<?php calhealth_photo_header_tag( get_post_thumbnail_id() ); ?>
+<div class="featured-image-bg-layer">
+</div>
+<div class="featured-image-container-content">
+    <?php
 
+    if( get_post_thumbnail_id() ) {
+        echo '<div class="featured-image-wrapper"><img class="featured-image-container-mobile-image" src="'.wp_get_attachment_url( get_post_thumbnail_id() ).'"></div>';
+    }
+
+    ?>
+    <figcaption><em><?php the_post_thumbnail_caption(); ?></em></figcaption>
+    <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+    <?php if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) : ?>
+        <h2 class="subtitle"><?php echo $subtitle ?></h2>
+    <?php endif; ?>
+</div>
+</div>
 <div id="single-post" class="page-full-width max-width-one-thousand <?php if( isset($hide_sidebar) && $hide_sidebar == 'yes' ) { echo 'no-sidebar'; } ?>" role="main">
 
 <?php do_action( 'foundationpress_before_content' ); ?>
@@ -27,34 +44,17 @@ if( get_theme_mod('internal-title-bar') != '' ) {
 
 	<section <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
     <?php if( get_theme_mod('internal-title-bar') == '' ) { ?>
-      <h1 class="entry-title"><?php the_title(); ?></h1>
-      <?php
-        $subtitle = get_post_custom_values( 'subtitle', get_the_ID() );
-        if ( ! empty( $subtitle ) ) {
-          // should be single value post meta, but if it isn't....
-          if ( is_array( $subtitle ) ) {
-            $subtitle = $subtitle[0];
-          }
-
-          printf(
-            '<h2 class="subtitle">%1$s</h2>',
-            esc_html( $subtitle ),
-          );
-        }
-      ?>
-      <?php if( get_theme_mod('about-the-author') != '' ): ?>
-        <div class="post-meta"><p><span class="author-name author-date">By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php the_author(); ?></a> • <?php echo get_the_date( 'M j, Y', $post->ID ); ?></span></p></div>
-      <?php endif; ?>
     <?php } ?>
-		<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
+        <?php do_action( 'foundationpress_post_before_entry_content' ); ?>
+        <div class="bottom-header-content">
+            <figcaption><em><?php the_post_thumbnail_caption(); ?></em></figcaption>
+            <div class="bottom-header-inline-content">
+                <?php if( get_theme_mod('about-the-author') != '' ): ?>
+                    <div class="post-meta"><p><span class="author-name author-date">By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" title="<?php echo esc_attr( get_the_author() ); ?>"><?php the_author(); ?></a> • <?php echo get_the_date( 'M j, Y', $post->ID ); ?></span></p></div>
+                <?php endif; ?>
+            </div>
+        </div>
 		<div class="entry-content">
-
-		<?php
-			if ( has_post_thumbnail() && $hide_featured_image != 'yes' ) { ?>
-			<div class="single-featured-image">
-				<?php the_post_thumbnail(); ?>
-			</div>
-		<?php }	?>
 
 		<?php the_content(); ?>
 		</div>
